@@ -95,7 +95,10 @@ a { color: var(--accent-2); }
   line-height: 1.06;
   letter-spacing: -.03em;
   font-weight: 800;
-  max-width: 17ch;
+  /* Wide enough that neither language is forced into a four-line stack
+     with an orphan on the first line; balance evens out what is left. */
+  max-width: 21ch;
+  text-wrap: balance;
 }
 .sources {
   margin: 18px auto 0; padding: 0; list-style: none;

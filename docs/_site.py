@@ -123,14 +123,13 @@ EN = {
 TR = {
     "lang": "tr", "other": "index.html", "other_label": "English",
     "dir_doc": "README.tr.md",
-    "title": f"AppSweep {VERSION} — Linux'ta yazılım kurmanın her yolu için "
-             f"tek kaldırma aracı",
+    "title": f"AppSweep {VERSION} — Linux'ta kurduğunuz her yazılımı tek bir yerden kaldırın",
     "meta": "apt, dnf, pacman, Flatpak, Snap, AppImage, pip, pipx, npm ve "
             "cargo ile kurulmuş her programı listeleyin, tek adımda "
             "kaldırın, kaldırmanın geride bıraktıklarını temizleyin.",
     "nav_docs": "Belgeler", "nav_source": "Kaynak", "nav_releases": "Sürümler",
     "shot": "screenshot-applications-tr.png",
-    "h1": "Linux'ta yazılım kurmanın her yolu için tek kaldırma aracı",
+    "h1": "Linux'ta kurduğunuz her yazılımı tek bir yerden kaldırın.",
     "cta_main": f"{VERSION} sürümünü indir", "cta_alt": "Kaynağa bak",
     "cta_note": f"Debian · Fedora · kaynak arşivi — GPL-3.0, "
                 f"sürüm {VERSION}",

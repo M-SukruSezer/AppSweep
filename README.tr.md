@@ -4,7 +4,7 @@
 
 # AppSweep
 
-**Linux'ta yazılım kurmanın her yolu için tek bir kaldırma aracı.**
+**Linux'ta kurduğunuz her yazılımı tek bir yerden kaldırın.**
 
 Türkçe · [English](README.md)
 

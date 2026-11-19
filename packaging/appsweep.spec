@@ -5,7 +5,7 @@ Name:           %{appname}
 Version:        0.1.1
 Release:        1%{?dist}
 Summary:        One uninstaller for every way Linux installs software
-Summary(tr):    Linux'ta yazılım kurmanın her yolu için tek kaldırma aracı
+Summary(tr):    Linux'ta kurduğunuz her yazılımı tek bir yerden kaldırın
 
 License:        GPL-3.0-or-later
 URL:            https://github.com/M-SukruSezer/AppSweep
