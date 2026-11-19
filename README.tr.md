@@ -19,7 +19,7 @@ Windows'un *Yüklü Uygulamalar* listesinin, ya da macOS'te bir `.app`'i çöp
 kutusuna atmanın Linux'taki karşılığı — ama hiçbir paket yöneticisinin
 temizlemediği kalıntıları da hesaba katarak.
 
-![Uygulamalar listesi](docs/screenshot-applications.png)
+![Uygulamalar listesi](docs/screenshot-applications-tr.png)
 
 ## Çözdüğü sorun
 

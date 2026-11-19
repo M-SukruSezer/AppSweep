@@ -12,3 +12,4 @@ po/*.mo
 po/*~
 po/*.po.bak
 dist/
+.oil-ui/site/

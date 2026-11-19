@@ -19,7 +19,7 @@ It is the Linux equivalent of the Windows *Apps & Features* list, or of
 dragging an `.app` to the Trash on macOS — except that it also accounts for
 the leftovers no package manager ever cleans up.
 
-![The Applications list](docs/screenshot-applications.png)
+![The Applications list](docs/screenshot-applications-en.png)
 
 ## The problem it solves
 

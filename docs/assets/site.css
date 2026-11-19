@@ -1,0 +1,282 @@
+/* AppSweep project page.
+   The palette, radii and surfaces are the application's own, so the page
+   reads as part of the same system rather than as marketing about it. */
+
+:root {
+  --bg:        #1e1e1e;
+  --bg-2:      #242424;
+  --surface:   #303030;
+  --surface-2: #383838;
+  --line:      rgba(255, 255, 255, .09);
+  --line-2:    rgba(255, 255, 255, .16);
+  --fg:        #ffffff;
+  --dim:       rgba(255, 255, 255, .58);
+  --dim-2:     rgba(255, 255, 255, .56);
+
+  --accent:    #3584e4;   /* the blue of the application icon */
+  --accent-2:  #62a0ea;
+  --amber:     #e5a50a;   /* what the app marks as "needs attention" */
+  --green:     #2ec27e;
+
+  --apt:       #e06c3b;
+  --snap:      #e95420;
+  --flatpak:   #4a90d9;
+  --pip:       #f6d32d;
+  --npm:       #cb3837;
+  --cargo:     #b7410e;
+
+  --r-card: 14px;
+  --r-btn: 9px;
+  --pad: clamp(20px, 5vw, 40px);
+  --font: "Adwaita Sans", "Cantarell", "Inter", "Noto Sans",
+          system-ui, -apple-system, sans-serif;
+  --mono: "Adwaita Mono", "JetBrains Mono", ui-monospace, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg-2);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: var(--accent-2); }
+.wrap { width: min(1080px, 100% - 2 * var(--pad)); margin-inline: auto; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------- header bar */
+/* Drawn as the application's own header bar, not as a website nav. */
+.hb {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--surface);
+  border-bottom: 1px solid rgba(0, 0, 0, .5);
+}
+.hb-in {
+  display: flex; align-items: center; gap: 12px;
+  height: 52px;
+}
+.hb img { width: 26px; height: 26px; }
+.hb .name { font-weight: 700; font-size: 15px; letter-spacing: -.01em; }
+.hb .ver {
+  font-size: 12px; font-weight: 600; color: var(--dim);
+  background: rgba(255, 255, 255, .08);
+  padding: 2px 8px; border-radius: 99px;
+}
+.hb nav { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+.hb nav a {
+  color: var(--dim); text-decoration: none; font-size: 14px;
+  padding: 6px 11px; border-radius: 8px;
+}
+.hb nav a:hover { color: var(--fg); background: rgba(255, 255, 255, .07); }
+.lang {
+  display: flex; gap: 2px; margin-left: 6px;
+  background: rgba(255, 255, 255, .07); border-radius: 8px; padding: 2px;
+}
+.lang a {
+  font-size: 13px; padding: 4px 10px; border-radius: 6px;
+  text-decoration: none; color: var(--dim);
+}
+.lang a[aria-current="true"] { background: var(--surface-2); color: var(--fg); }
+
+/* ----------------------------------------------------------------- hero */
+.hero { padding-top: clamp(30px, 4.6vw, 54px); text-align: center; }
+.hero h1 {
+  margin: 0 auto;
+  font-size: clamp(32px, 5.4vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -.03em;
+  font-weight: 800;
+  max-width: 17ch;
+}
+.sources {
+  margin: 18px auto 0; padding: 0; list-style: none;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 7px; max-width: 860px;
+}
+.sources li {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13.5px; font-weight: 650;
+  padding: 4px 11px 4px 9px; border-radius: 99px;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid var(--line);
+}
+/* The hue identifies the source; the label has to stay readable, so the
+   colour moves to a dot and the text keeps full contrast. */
+.sources li::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--c, var(--fg)); flex: 0 0 8px;
+}
+.sources li b { color: rgba(255, 255, 255, .92); font-weight: 650; }
+
+.cta { margin-top: 24px; display: flex; gap: 11px; justify-content: center;
+       flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: var(--r-btn);
+  font-size: 15.5px; font-weight: 650; text-decoration: none;
+  border: 1px solid transparent; transition: transform .12s, background .15s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #2b78d6; }
+.btn-ghost {
+  background: rgba(255, 255, 255, .08); color: var(--fg);
+  border-color: var(--line-2);
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, .13); }
+.cta-note { margin-top: 12px; font-size: 13.5px; color: var(--dim-2); }
+
+/* The interface is the first screen: the window is the mass, and it runs
+   off the bottom edge so it plainly continues. */
+.shot {
+  margin: clamp(24px, 3.6vw, 40px) auto 0;
+  width: min(1000px, 100%);
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  border-bottom: 0;
+  box-shadow: 0 -2px 60px rgba(0, 0, 0, .55), 0 40px 80px rgba(0, 0, 0, .45);
+}
+.shot img { display: block; width: 100%; height: auto; }
+
+/* -------------------------------------------------------------- section */
+section { padding: clamp(64px, 9vw, 112px) 0; }
+.sec-head { max-width: 46ch; }
+.eyebrow {
+  font-size: 12.5px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--dim-2); margin: 0 0 10px;
+}
+h2 {
+  margin: 0; font-size: clamp(26px, 3.6vw, 40px); line-height: 1.14;
+  letter-spacing: -.022em; font-weight: 750;
+}
+.lede { margin: 16px 0 0; color: var(--dim); font-size: clamp(16px, 1.6vw, 18.5px); }
+
+/* -------------------------------------------------------- the narrative */
+/* The protagonist comes from the product: an application tile, and the
+   footprint it leaves when it is taken away. */
+/* The stage is held by CSS sticky and only scrubbed by the library.
+   Pinning it with ScrollTrigger left no space reserved in the flow, so the
+   scene drew on top of the section above it. */
+.stage-outer { position: relative; height: 300vh; }
+.stage {
+  position: sticky; top: 0;
+  height: 100svh; display: grid; place-items: center;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage-outer { height: auto; }
+  .stage { position: static; height: auto; padding: 72px 0 96px; }
+}
+.scene { position: relative; width: min(420px, 78vw); aspect-ratio: 1; }
+.footprint {
+  position: absolute; inset: 14%;
+  border: 7px dashed var(--dim-2); border-radius: 17%;
+  opacity: 0;
+}
+.speck { position: absolute; border-radius: 50%; background: var(--dim-2); opacity: 0; }
+.speck.s1 { width: 20px; height: 20px; left: 30%; top: 62%; }
+.speck.s2 { width: 14px; height: 14px; left: 45%; top: 72%; }
+.speck.s3 { width: 11px; height: 11px; left: 25%; top: 76%; }
+.tile {
+  position: absolute; inset: 14%;
+  border-radius: 17%;
+  background: var(--accent);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .5);
+}
+.tile::after {
+  content: ""; position: absolute; left: 16%; top: 14%;
+  width: 44%; height: 7%; border-radius: 99px;
+  background: rgba(255, 255, 255, .45);
+}
+.caption {
+  position: absolute; left: 50%; bottom: clamp(32px, 7vh, 72px);
+  transform: translateX(-50%);
+  width: min(560px, 86vw); text-align: center;
+  font-size: clamp(18px, 2.4vw, 25px); font-weight: 650;
+  line-height: 1.3; letter-spacing: -.015em;
+}
+.caption span { display: block; position: absolute; inset: 0; opacity: 0; }
+.caption span:first-child { opacity: 1; position: relative; }
+
+/* ---------------------------------------------------------------- cards */
+.grid { display: grid; gap: 16px; margin-top: 40px; }
+.g-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-card); padding: 22px;
+}
+.card h3 { margin: 0 0 8px; font-size: 17.5px; font-weight: 700; }
+.card p { margin: 0; color: var(--dim); font-size: 15.5px; }
+.card .big {
+  display: block; font-size: 34px; font-weight: 800; letter-spacing: -.03em;
+  margin-bottom: 4px;
+}
+
+/* ------------------------------------------------------------- download */
+.dl { background: var(--bg); }
+.dl-card {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-card); padding: 22px;
+}
+.dl-card .for { font-size: 13px; color: var(--dim-2); margin: 0 0 4px; }
+.dl-card h3 { margin: 0 0 14px; font-size: 18px; }
+.dl-card code {
+  display: block; font-family: var(--mono); font-size: 12.5px;
+  background: #1a1a1a; border: 1px solid var(--line);
+  border-radius: 9px; padding: 11px 12px; color: var(--dim);
+  overflow-x: auto; white-space: pre; margin-bottom: 16px;
+}
+.dl-card .btn { margin-top: auto; justify-content: center; }
+.checks { margin-top: 18px; font-size: 13.5px; color: var(--dim-2); }
+
+/* ---------------------------------------------------------------- lists */
+.safety { margin: 36px 0 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+.safety li {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 15px 2px; border-top: 1px solid var(--line);
+}
+.safety li:last-child { border-bottom: 1px solid var(--line); }
+.safety .k { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%;
+             background: var(--green); margin-top: 9px; }
+.safety b { font-weight: 650; }
+.safety p { margin: 3px 0 0; color: var(--dim); font-size: 15.5px; }
+
+/* --------------------------------------------------------------- footer */
+footer {
+  border-top: 1px solid var(--line); padding: 36px 0 56px;
+  color: var(--dim-2); font-size: 14px;
+}
+.foot-in { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
+footer a { color: var(--dim); text-decoration: none; }
+footer a:hover { color: var(--fg); text-decoration: underline; }
+
+/* Blocks are hidden only once the animation library is actually running,
+   so the page stays readable when it is not. */
+.js-anim .reveal { opacity: 0; transform: translateY(14px); }
+@media (prefers-reduced-motion: reduce) {
+  .js-anim .reveal { opacity: 1; transform: none; }
+}
+
+/* On a phone the whole window shrinks to the point where its rows cannot
+   be read, which turns the strongest asset into grey texture. Show it at
+   something near its real scale and let the right edge crop instead. */
+@media (max-width: 760px) {
+  .shot img { width: 205%; max-width: none; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .hb .ver { display: none; }
+  .hb nav a.hide-sm { display: none; }
+}
