@@ -1,0 +1,1258 @@
+# Turkish translation for AppSweep.
+# Copyright (C) 2026 AppSweep contributors
+# This file is distributed under the same license as AppSweep.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AppSweep 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/M-SukruSezer/AppSweep/issues\n"
+"POT-Creation-Date: 2026-11-19 07:24+0300\n"
+"PO-Revision-Date: 2026-11-18 21:00\n"
+"Last-Translator: AppSweep\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: appsweep/backends/appimage.py:79
+#, python-brace-format
+msgid "Move {name} to the trash"
+msgstr "{name} dosyasını çöp kutusuna taşı"
+
+#: appsweep/backends/appimage.py:85
+#, python-brace-format
+msgid "Remove its launcher ({name})"
+msgstr "Başlatıcısını kaldır ({name})"
+
+#: appsweep/backends/appimage.py:89
+msgid ""
+"AppImages are single files, so there is nothing to uninstall — AppSweep "
+"moves the file and its launcher to the trash and then looks for leftover "
+"settings."
+msgstr ""
+"AppImage'ler tek dosyadır, dolayısıyla kaldırılacak bir kurulum yoktur — "
+"AppSweep dosyayı ve başlatıcısını çöp kutusuna taşır, ardından geride kalan "
+"ayarları arar."
+
+#: appsweep/backends/cargo.py:63 appsweep/backends/pipx.py:67
+#, python-brace-format
+msgid "provides: {bins}"
+msgstr "sağladığı komutlar: {bins}"
+
+#: appsweep/backends/cargo.py:99
+#, python-brace-format
+msgid "Uninstall the Rust binary {pkg}"
+msgstr "{pkg} Rust programını kaldır"
+
+#: appsweep/backends/cargo.py:110
+msgid "Trim cargo's registry cache"
+msgstr "cargo'nun depo önbelleğini kırp"
+
+#: appsweep/backends/cargo.py:114
+msgid ""
+"Cargo has no built-in command to prune its registry cache. Install cargo-"
+"cache (cargo install cargo-cache) and AppSweep will offer to trim it."
+msgstr ""
+"Cargo'nun depo önbelleğini temizleyen yerleşik bir komutu yok. cargo-cache'i "
+"kurarsanız (cargo install cargo-cache) AppSweep kırpmayı önerir."
+
+#: appsweep/backends/dpkg.py:125
+#, python-brace-format
+msgid ""
+"“{pkg}” is marked essential or required by the distribution. AppSweep will "
+"not remove it."
+msgstr ""
+"“{pkg}” dağıtım tarafından temel ya da zorunlu olarak işaretlenmiş. AppSweep "
+"bunu kaldırmaz."
+
+#: appsweep/backends/dpkg.py:140
+#, python-brace-format
+msgid "Purge {pkg}"
+msgstr "{pkg} paketini ayarlarıyla birlikte kaldır"
+
+#: appsweep/backends/dpkg.py:140 appsweep/backends/pacman.py:83
+#: appsweep/backends/rpmdnf.py:67
+#, python-brace-format
+msgid "Remove {pkg}"
+msgstr "{pkg} paketini kaldır"
+
+#: appsweep/backends/dpkg.py:142
+msgid " and its unused dependencies"
+msgstr " ve kullanılmayan bağımlılıklarını"
+
+#: appsweep/backends/dpkg.py:148
+msgid "Purge also deletes this package's files under /etc."
+msgstr "Tam kaldırma, bu paketin /etc altındaki dosyalarını da siler."
+
+#: appsweep/backends/dpkg.py:156
+msgid "Remove packages no longer needed by anything"
+msgstr "Artık hiçbir şeyin ihtiyaç duymadığı paketleri kaldır"
+
+#: appsweep/backends/dpkg.py:165
+msgid "Empty the downloaded .deb cache"
+msgstr "İndirilmiş .deb önbelleğini boşalt"
+
+#: appsweep/backends/flatpak.py:87
+#, python-brace-format
+msgid "Uninstall Flatpak {pkg}"
+msgstr "{pkg} Flatpak'ini kaldır"
+
+#: appsweep/backends/flatpak.py:95
+msgid "Remove runtimes nothing uses any more"
+msgstr "Artık kullanılmayan çalışma zamanlarını kaldır"
+
+#: appsweep/backends/flatpak.py:100
+msgid "--delete-data removes this app's ~/.var/app directory."
+msgstr "--delete-data bu uygulamanın ~/.var/app dizinini siler."
+
+#: appsweep/backends/flatpak.py:107
+#, python-brace-format
+msgid "App data kept at {path}"
+msgstr "Uygulama verisi şurada tutuldu: {path}"
+
+#: appsweep/backends/flatpak.py:115
+msgid "Remove unused system runtimes"
+msgstr "Kullanılmayan sistem çalışma zamanlarını kaldır"
+
+#: appsweep/backends/flatpak.py:120
+msgid "Remove unused user runtimes"
+msgstr "Kullanılmayan kullanıcı çalışma zamanlarını kaldır"
+
+#: appsweep/backends/flatpak.py:128
+msgid "Prune stale objects from the Flatpak repository"
+msgstr "Flatpak deposundaki eskimiş nesneleri temizle"
+
+#: appsweep/backends/npm.py:95
+#, python-brace-format
+msgid "“{pkg}” ships with Node.js itself. AppSweep will not remove it."
+msgstr "“{pkg}” Node.js'in kendisiyle birlikte gelir. AppSweep bunu kaldırmaz."
+
+#: appsweep/backends/npm.py:103
+#, python-brace-format
+msgid "Uninstall the global npm package {pkg}"
+msgstr "{pkg} küresel npm paketini kaldır"
+
+#: appsweep/backends/npm.py:109
+#, python-brace-format
+msgid ""
+"The global npm prefix is {path}, which your user cannot write to, so this "
+"step needs administrator access."
+msgstr ""
+"Küresel npm dizini {path} ve kullanıcınız buraya yazamıyor, bu yüzden bu "
+"adım yönetici yetkisi gerektirir."
+
+#: appsweep/backends/npm.py:119
+msgid "Empty npm's download cache"
+msgstr "npm'in indirme önbelleğini boşalt"
+
+#: appsweep/backends/pacman.py:72 appsweep/backends/rpmdnf.py:61
+#, python-brace-format
+msgid "“{pkg}” is part of the base system. AppSweep will not remove it."
+msgstr "“{pkg}” temel sistemin parçası. AppSweep bunu kaldırmaz."
+
+#: appsweep/backends/pacman.py:95
+#, python-brace-format
+msgid "Remove {n} orphans"
+msgstr "{n} sahipsiz paketi kaldır"
+
+#: appsweep/backends/pacman.py:107
+msgid "Keep one cached version per package"
+msgstr "Her paket için önbellekte tek sürüm bırak"
+
+#: appsweep/backends/pacman.py:113
+msgid "Remove cached packages"
+msgstr "Önbellekteki paketleri kaldır"
+
+#: appsweep/backends/pip.py:188
+#, python-brace-format
+msgid ""
+"“{pkg}” is part of pip's own machinery; removing it would leave you unable "
+"to install Python packages. AppSweep will not remove it."
+msgstr ""
+"“{pkg}” pip'in kendi altyapısının parçası; kaldırmak Python paketi kurmanızı "
+"imkânsız hale getirir. AppSweep bunu kaldırmaz."
+
+#: appsweep/backends/pip.py:195
+#, python-brace-format
+msgid ""
+"“{pkg}” was installed by your distribution, not by pip. Remove it through "
+"the system package manager instead."
+msgstr ""
+"“{pkg}” pip ile değil, dağıtımınız tarafından kuruldu. Bunu sistem paket "
+"yöneticisi üzerinden kaldırın."
+
+#: appsweep/backends/pip.py:205
+#, python-brace-format
+msgid "Uninstall the Python package {pkg}"
+msgstr "{pkg} Python paketini kaldır"
+
+#: appsweep/backends/pip.py:210
+msgid ""
+"pip removes only this package. Anything it pulled in as a dependency stays, "
+"because pip keeps no record of what was installed to satisfy what."
+msgstr ""
+"pip yalnızca bu paketi kaldırır. Bağımlılık olarak getirdiği her şey kalır, "
+"çünkü pip neyin ne için kurulduğuna dair bir kayıt tutmaz."
+
+#: appsweep/backends/pip.py:221
+msgid "Empty pip's wheel cache"
+msgstr "pip'in wheel önbelleğini boşalt"
+
+#: appsweep/backends/pipx.py:85
+#, python-brace-format
+msgid "Uninstall the pipx application {pkg}"
+msgstr "{pkg} pipx uygulamasını kaldır"
+
+#: appsweep/backends/pipx.py:90
+msgid ""
+"This removes the whole virtual environment pipx made for it, including its "
+"dependencies."
+msgstr ""
+"Bu, pipx'in onun için oluşturduğu sanal ortamın tamamını, bağımlılıkları "
+"dahil, kaldırır."
+
+#: appsweep/backends/pipx.py:103
+msgid "Locate pipx's cache"
+msgstr "pipx'in önbelleğini bul"
+
+#: appsweep/backends/rpmdnf.py:72 appsweep/backends/rpmdnf.py:82
+msgid "Remove unneeded dependencies"
+msgstr "Gereksiz bağımlılıkları kaldır"
+
+#: appsweep/backends/rpmdnf.py:74
+msgid ""
+"dnf keeps files under /etc that you have modified; AppSweep lists them as "
+"leftovers afterwards."
+msgstr ""
+"dnf, /etc altında sizin değiştirdiğiniz dosyaları korur; AppSweep bunları "
+"sonrasında kalıntı olarak listeler."
+
+#: appsweep/backends/rpmdnf.py:88
+msgid "Empty the dnf cache"
+msgstr "dnf önbelleğini boşalt"
+
+#: appsweep/backends/snapd.py:81
+#, python-brace-format
+msgid ""
+"“{pkg}” is the snap runtime itself; removing it breaks every other snap. "
+"AppSweep will not remove it."
+msgstr ""
+"“{pkg}” snap çalışma zamanının kendisi; kaldırmak diğer tüm snap'leri bozar. "
+"AppSweep bunu kaldırmaz."
+
+#: appsweep/backends/snapd.py:91
+#, python-brace-format
+msgid "Remove snap {pkg}"
+msgstr "{pkg} snap'ini kaldır"
+
+#: appsweep/backends/snapd.py:94
+msgid ""
+"Without --purge, snapd keeps a snapshot of this snap's data; with it, the "
+"data is gone immediately."
+msgstr ""
+"--purge olmadan snapd bu snap'in verisinin bir anlık görüntüsünü saklar; "
+"onunla birlikte veri anında gider."
+
+#: appsweep/backends/snapd.py:97
+msgid "--purge skips the data snapshot — removal is immediate and final."
+msgstr ""
+"--purge veri anlık görüntüsünü atlar — kaldırma anında ve geri dönüşsüz."
+
+#: appsweep/backends/snapd.py:106
+msgid "Keep only 2 old revisions of each snap"
+msgstr "Her snap'in yalnızca 2 eski sürümünü tut"
+
+#: appsweep/cli.py:26
+msgid "the system package manager"
+msgstr "sistem paket yöneticisi"
+
+#: appsweep/cli.py:31
+msgid "certain"
+msgstr "kesin"
+
+#: appsweep/cli.py:32
+msgid "likely"
+msgstr "olası"
+
+#: appsweep/cli.py:33
+msgid "guess"
+msgstr "tahmin"
+
+#: appsweep/cli.py:39 appsweep/ui/page_leftovers.py:30
+#: appsweep/ui/removal.py:458
+msgid "settings"
+msgstr "ayarlar"
+
+#: appsweep/cli.py:40 appsweep/ui/page_leftovers.py:31
+#: appsweep/ui/removal.py:459
+msgid "data"
+msgstr "veri"
+
+#: appsweep/cli.py:41 appsweep/ui/page_leftovers.py:32
+#: appsweep/ui/removal.py:460
+msgid "cache"
+msgstr "önbellek"
+
+#: appsweep/cli.py:42 appsweep/ui/page_leftovers.py:33
+#: appsweep/ui/removal.py:461
+msgid "state"
+msgstr "durum"
+
+#: appsweep/cli.py:43 appsweep/ui/page_leftovers.py:34
+#: appsweep/ui/removal.py:462
+msgid "system"
+msgstr "sistem"
+
+#: appsweep/cli.py:54
+msgid "y|yes"
+msgstr "e|evet|y|yes"
+
+#: appsweep/cli.py:91
+msgid "NAME"
+msgstr "AD"
+
+#: appsweep/cli.py:91
+msgid "VERSION"
+msgstr "SÜRÜM"
+
+#: appsweep/cli.py:92
+msgid "SIZE"
+msgstr "BOYUT"
+
+#: appsweep/cli.py:92
+msgid "SOURCE"
+msgstr "KAYNAK"
+
+#: appsweep/cli.py:94
+msgid "orphan"
+msgstr "sahipsiz"
+
+#: appsweep/cli.py:97
+#, python-brace-format
+msgid "{n} item · {size}"
+msgid_plural "{n} items · {size}"
+msgstr[0] "{n} kalem · {size}"
+msgstr[1] "{n} kalem · {size}"
+
+#: appsweep/cli.py:109
+#, python-brace-format
+msgid "No installed software matches “{query}”."
+msgstr "“{query}” ile eşleşen kurulu bir yazılım yok."
+
+#: appsweep/cli.py:113
+#, python-brace-format
+msgid "“{query}” matches {n} items:"
+msgstr "“{query}” {n} kalemle eşleşiyor:"
+
+#: appsweep/cli.py:117
+msgid "Be more specific, or pass --first to take the top match."
+msgstr "Daha belirgin yazın ya da ilk eşleşmeyi almak için --first kullanın."
+
+#: appsweep/cli.py:133
+msgid "scanning for leftover files…"
+msgstr "kalıntı dosyalar taranıyor…"
+
+#: appsweep/cli.py:140 appsweep/cli.py:251
+msgid "Will run:"
+msgstr "Çalıştırılacak:"
+
+#: appsweep/cli.py:144
+#, python-brace-format
+msgid "Leftovers found ({size}):"
+msgstr "Bulunan kalıntılar ({size}):"
+
+#: appsweep/cli.py:152
+#, python-brace-format
+msgid "note: {note}"
+msgstr "not: {note}"
+
+#: appsweep/cli.py:155 appsweep/cli.py:255
+msgid "--dry-run: nothing was changed."
+msgstr "--dry-run: hiçbir şey değiştirilmedi."
+
+#: appsweep/cli.py:159 appsweep/cli.py:219 appsweep/cli.py:259
+msgid "Proceed? [y/N] "
+msgstr "Devam edilsin mi? [e/H] "
+
+#: appsweep/cli.py:164 appsweep/cli.py:221
+msgid "Cancelled."
+msgstr "İptal edildi."
+
+#: appsweep/cli.py:169
+msgid "Done."
+msgstr "Tamamlandı."
+
+#: appsweep/cli.py:170
+msgid "Finished with errors."
+msgstr "Hatalarla tamamlandı."
+
+#: appsweep/cli.py:177
+#, python-brace-format
+msgid "indexed {n} installed items; scanning…"
+msgstr "{n} kurulu kalem dizinlendi; taranıyor…"
+
+#: appsweep/cli.py:184
+msgid "Nothing unaccounted for. Your home directory is clean."
+msgstr "Sahipsiz hiçbir şey yok. Ev dizininiz temiz."
+
+#: appsweep/cli.py:189
+#, python-brace-format
+msgid "{n} directory no installed app accounts for ({size}):"
+msgid_plural "{n} directories no installed app accounts for ({size}):"
+msgstr[0] "Hiçbir kurulu uygulamanın sahiplenmediği {n} dizin ({size}):"
+msgstr[1] "Hiçbir kurulu uygulamanın sahiplenmediği {n} dizin ({size}):"
+
+#: appsweep/cli.py:195
+msgid "root"
+msgstr "yönetici"
+
+#: appsweep/cli.py:201
+msgid ""
+"Name matching is a heuristic. Low-confidence entries are\n"
+"often legitimate — review each path before removing it."
+msgstr ""
+"İsim eşleşmesi bir tahmindir. Düşük güvenilirlikteki kayıtlar\n"
+"genelde meşrudur — silmeden önce her yolu gözden geçirin."
+
+#: appsweep/cli.py:204
+msgid "Pass --remove to delete the ones you confirm."
+msgstr "Onayladıklarınızı silmek için --remove kullanın."
+
+#: appsweep/cli.py:209
+msgid "Nothing above low confidence to remove."
+msgstr "Düşük güvenilirliğin üstünde kaldırılacak bir şey yok."
+
+#: appsweep/cli.py:212
+#, python-brace-format
+msgid "About to remove {n} path ({size})."
+msgid_plural "About to remove {n} paths ({size})."
+msgstr[0] "{n} yol kaldırılmak üzere ({size})."
+msgstr[1] "{n} yol kaldırılmak üzere ({size})."
+
+#: appsweep/cli.py:248
+msgid "Pick at least one of --orphans, --cache or --all."
+msgstr "--orphans, --cache ya da --all seçeneklerinden en az birini verin."
+
+#: appsweep/cli.py:272
+msgid "Backends"
+msgstr "Arka uçlar"
+
+#: appsweep/cli.py:275
+msgid "active"
+msgstr "etkin"
+
+#: appsweep/cli.py:276
+msgid "unavailable"
+msgstr "kullanılamaz"
+
+#: appsweep/cli.py:278
+#, python-brace-format
+msgid "{n} item"
+msgid_plural "{n} items"
+msgstr[0] "{n} kalem"
+msgstr[1] "{n} kalem"
+
+#: appsweep/cli.py:287
+#, python-brace-format
+msgid ""
+"{n} package skipped — installed by the distribution, listed under {other}"
+msgid_plural ""
+"{n} packages skipped — installed by the distribution, listed under {other}"
+msgstr[0] ""
+"{n} paket atlandı — dağıtım tarafından kurulmuş, {other} altında listeleniyor"
+msgstr[1] ""
+"{n} paket atlandı — dağıtım tarafından kurulmuş, {other} altında listeleniyor"
+
+#: appsweep/cli.py:293
+msgid "Reclaimable cache"
+msgstr "Geri kazanılabilir önbellek"
+
+#: appsweep/cli.py:299
+msgid "Orphaned packages"
+msgstr "Sahipsiz paketler"
+
+#: appsweep/cli.py:311
+msgid ""
+"One uninstaller for apt, dnf, pacman, Flatpak, Snap and AppImage — with "
+"leftover cleanup."
+msgstr ""
+"apt, dnf, pacman, Flatpak, Snap ve AppImage için tek kaldırma aracı — "
+"kalıntı temizliğiyle birlikte."
+
+#: appsweep/cli.py:318
+msgid "limit to a source (apt, dnf, pacman, flatpak, snap, appimage)"
+msgstr "tek bir kaynakla sınırla (apt, dnf, pacman, flatpak, snap, appimage)"
+
+#: appsweep/cli.py:321
+msgid "list installed software"
+msgstr "kurulu yazılımları listele"
+
+#: appsweep/cli.py:322
+msgid "filter by name"
+msgstr "ada göre filtrele"
+
+#: appsweep/cli.py:324
+msgid "include libraries and runtimes"
+msgstr "kütüphaneleri ve çalışma zamanlarını da dahil et"
+
+#: appsweep/cli.py:325
+msgid "largest first"
+msgstr "en büyük önce"
+
+#: appsweep/cli.py:330
+msgid "uninstall software and its leftovers"
+msgstr "yazılımı ve kalıntılarını kaldır"
+
+#: appsweep/cli.py:333
+msgid "remove but keep system config files (no purge)"
+msgstr "kaldır ama sistem ayar dosyalarını koru (tam kaldırma yapma)"
+
+#: appsweep/cli.py:335
+msgid "do not scan for or delete leftover user data"
+msgstr "kalıntı kullanıcı verisini tarama ve silme"
+
+#: appsweep/cli.py:337
+msgid "leave unused dependencies installed"
+msgstr "kullanılmayan bağımlılıkları kurulu bırak"
+
+#: appsweep/cli.py:339
+msgid "only delete leftovers matched with high confidence"
+msgstr "yalnızca yüksek güvenilirlikle eşleşen kalıntıları sil"
+
+#: appsweep/cli.py:342
+msgid "delete outright instead of moving to the trash"
+msgstr "çöp kutusuna taşımak yerine doğrudan sil"
+
+#: appsweep/cli.py:344
+msgid "take the first match instead of refusing"
+msgstr "reddetmek yerine ilk eşleşmeyi al"
+
+#: appsweep/cli.py:351
+msgid "find residue from software already removed"
+msgstr "hâlihazırda kaldırılmış yazılımların kalıntılarını bul"
+
+#: appsweep/cli.py:353
+msgid "also scan ~/.cache"
+msgstr "~/.cache dizinini de tara"
+
+#: appsweep/cli.py:355
+msgid "skip /etc, /var/lib and /opt"
+msgstr "/etc, /var/lib ve /opt dizinlerini atla"
+
+#: appsweep/cli.py:357
+msgid "hide low-confidence guesses"
+msgstr "düşük güvenilirlikteki tahminleri gizle"
+
+#: appsweep/cli.py:359
+msgid "delete the medium and high confidence entries"
+msgstr "orta ve yüksek güvenilirlikteki kayıtları sil"
+
+#: appsweep/cli.py:365
+msgid "orphans and package-manager caches"
+msgstr "sahipsiz paketler ve paket yöneticisi önbellekleri"
+
+#: appsweep/cli.py:374
+msgid "what AppSweep can see on this system"
+msgstr "AppSweep'in bu sistemde neleri gördüğü"
+
+#: appsweep/cli.py:385
+msgid "Interrupted."
+msgstr "Yarıda kesildi."
+
+#: appsweep/ui/app.py:94
+msgid ""
+"One uninstaller for every way Linux installs software.\n"
+"\n"
+"AppSweep lists what apt, dnf, pacman, Flatpak, Snap, AppImage, pip, pipx, "
+"npm and cargo have put on this machine, removes any of it in one step, and "
+"then finds the settings, caches and data that uninstalling leaves behind."
+msgstr ""
+"Linux'ta yazılım kurmanın her yolu için tek bir kaldırma aracı.\n"
+"\n"
+"AppSweep; apt, dnf, pacman, Flatpak, Snap, AppImage, pip, pipx, npm ve "
+"cargo'nun bu makineye koyduğu her şeyi listeler, seçtiklerinizi tek adımda "
+"kaldırır ve ardından kaldırma işleminin geride bıraktığı ayarları, "
+"önbellekleri ve verileri bulur."
+
+#. TRANSLATORS: put your name here, one per line.
+#: appsweep/ui/app.py:111
+msgid "translator-credits"
+msgstr "Muhammed Şükrü SEZER"
+
+#: appsweep/ui/app.py:113
+msgid "Source code"
+msgstr "Kaynak kodu"
+
+#: appsweep/ui/app.py:115
+msgid "Built on"
+msgstr "Üzerine kurulduğu projeler"
+
+#: appsweep/ui/app.py:123
+msgid "Safety rules"
+msgstr "Güvenlik kuralları"
+
+#: appsweep/ui/app.py:125
+msgid "Protected paths are refused outright"
+msgstr "Korunan yollar koşulsuz reddedilir"
+
+#: appsweep/ui/app.py:126
+msgid "Leftovers go to the trash, not /dev/null"
+msgstr "Kalıntılar /dev/null'a değil, çöp kutusuna gider"
+
+#: appsweep/ui/app.py:127
+msgid "Every command is shown before it runs"
+msgstr "Her komut çalışmadan önce gösterilir"
+
+#: appsweep/ui/app.py:131
+msgid "Icon"
+msgstr "Simge"
+
+#: appsweep/ui/app.py:132
+msgid ""
+"The application icon is part of AppSweep and is released under the same "
+"licence. It follows the GNOME icon template and uses the GNOME palette."
+msgstr ""
+"Uygulama simgesi AppSweep'in parçasıdır ve aynı lisansla dağıtılır. GNOME "
+"simge şablonunu izler ve GNOME paletini kullanır."
+
+#: appsweep/ui/app.py:145
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#: appsweep/ui/app.py:147
+msgid "Ctrl+R or F5\tRescan the system"
+msgstr "Ctrl+R veya F5\tSistemi yeniden tara"
+
+#: appsweep/ui/app.py:148
+msgid "Ctrl+F\t\tSearch installed software"
+msgstr "Ctrl+F\t\tKurulu yazılımlarda ara"
+
+#: appsweep/ui/app.py:149
+msgid "Ctrl+,\t\tPreferences"
+msgstr "Ctrl+,\t\tTercihler"
+
+#: appsweep/ui/app.py:150
+msgid "Ctrl+Q\t\tQuit"
+msgstr "Ctrl+Q\t\tÇıkış"
+
+#: appsweep/ui/app.py:153 appsweep/ui/removal.py:182
+msgid "Close"
+msgstr "Kapat"
+
+#: appsweep/ui/page_apps.py:27
+msgid "All sources"
+msgstr "Tüm kaynaklar"
+
+#: appsweep/ui/page_apps.py:90
+msgid "No matches"
+msgstr "Eşleşme yok"
+
+#: appsweep/ui/page_apps.py:91
+msgid "Try a different search, or widen the filters."
+msgstr "Başka bir arama deneyin ya da filtreleri genişletin."
+
+#: appsweep/ui/page_apps.py:94
+msgid "Reading installed software"
+msgstr "Kurulu yazılımlar okunuyor"
+
+#: appsweep/ui/page_apps.py:95
+msgid "Querying every package manager on this system…"
+msgstr "Bu sistemdeki her paket yöneticisi sorgulanıyor…"
+
+#: appsweep/ui/page_apps.py:110
+msgid "Search installed software"
+msgstr "Kurulu yazılımlarda ara"
+
+#: appsweep/ui/page_apps.py:120
+msgid "Largest first"
+msgstr "En büyük önce"
+
+#: appsweep/ui/page_apps.py:120
+msgid "Name"
+msgstr "Ad"
+
+#: appsweep/ui/page_apps.py:120
+msgid "Source"
+msgstr "Kaynak"
+
+#: appsweep/ui/page_apps.py:126
+msgid "Also show libraries, runtimes and system packages"
+msgstr "Kütüphaneleri, çalışma zamanlarını ve sistem paketlerini de göster"
+
+#: appsweep/ui/page_apps.py:132
+msgid "Show only packages nothing depends on any more"
+msgstr "Yalnızca artık hiçbir şeyin ihtiyaç duymadığı paketleri göster"
+
+#: appsweep/ui/page_apps.py:153 appsweep/ui/page_cleanup.py:161
+#: appsweep/ui/page_cleanup.py:177
+msgid "Clear"
+msgstr "Temizle"
+
+#: appsweep/ui/page_apps.py:155 appsweep/ui/page_apps.py:372
+msgid "Uninstall…"
+msgstr "Kaldır…"
+
+#: appsweep/ui/page_apps.py:225
+msgid "no longer needed by anything"
+msgstr "artık hiçbir şey buna ihtiyaç duymuyor"
+
+#: appsweep/ui/page_apps.py:243
+msgid "Essential to the system — AppSweep will not remove it."
+msgstr "Sistem için zorunlu — AppSweep bunu kaldırmaz."
+
+#: appsweep/ui/page_apps.py:338
+#, python-brace-format
+msgid "{shown} shown of {total} installed · {size} on disk"
+msgstr "{total} kurulu kalemden {shown} tanesi gösteriliyor · diskte {size}"
+
+#: appsweep/ui/page_apps.py:367
+#, python-brace-format
+msgid "{n} app selected · {size}"
+msgid_plural "{n} apps selected · {size}"
+msgstr[0] "{n} uygulama seçildi · {size}"
+msgstr[1] "{n} uygulama seçildi · {size}"
+
+#: appsweep/ui/page_apps.py:373
+#, python-brace-format
+msgid "Uninstall {n}…"
+msgstr "{n} tanesini kaldır…"
+
+#: appsweep/ui/page_cleanup.py:31
+msgid "Space you can get back"
+msgstr "Geri kazanabileceğiniz alan"
+
+#: appsweep/ui/page_cleanup.py:32
+msgid "Nothing here is something you installed on purpose."
+msgstr "Buradakilerin hiçbiri sizin bilerek kurduğunuz bir şey değil."
+
+#: appsweep/ui/page_cleanup.py:37
+msgid "Adding it up"
+msgstr "Toplanıyor"
+
+#: appsweep/ui/page_cleanup.py:38
+msgid ""
+"Measuring caches and asking each package manager what it no longer needs"
+msgstr ""
+"Önbellekler ölçülüyor ve her paket yöneticisine artık neye ihtiyaç duymadığı "
+"soruluyor"
+
+#: appsweep/ui/page_cleanup.py:76
+#, python-brace-format
+msgid "{source} download cache"
+msgstr "{source} indirme önbelleği"
+
+#: appsweep/ui/page_cleanup.py:78
+msgid ""
+"Installer files already applied. Safe to empty; they re-download if ever "
+"needed."
+msgstr ""
+"Zaten uygulanmış kurulum dosyaları. Boşaltmak güvenlidir; gerekirse yeniden "
+"indirilirler."
+
+#: appsweep/ui/page_cleanup.py:89
+#, python-brace-format
+msgid ", and {n} more"
+msgstr " ve {n} tane daha"
+
+#: appsweep/ui/page_cleanup.py:93
+#, python-brace-format
+msgid "{n} unused dependency ({source})"
+msgid_plural "{n} unused dependencies ({source})"
+msgstr[0] "{n} kullanılmayan bağımlılık ({source})"
+msgstr[1] "{n} kullanılmayan bağımlılık ({source})"
+
+#: appsweep/ui/page_cleanup.py:112
+#, python-brace-format
+msgid "Drop {name} revision {rev}"
+msgstr "{name} sürüm {rev} kaydını kaldır"
+
+#: appsweep/ui/page_cleanup.py:117
+#, python-brace-format
+msgid "{n} superseded snap revision"
+msgid_plural "{n} superseded snap revisions"
+msgstr[0] "{n} eskimiş snap sürümü"
+msgstr[1] "{n} eskimiş snap sürümü"
+
+#: appsweep/ui/page_cleanup.py:121
+#, python-brace-format
+msgid "{name} (rev {rev})"
+msgstr "{name} (sürüm {rev})"
+
+#: appsweep/ui/page_cleanup.py:136
+msgid "Nothing to reclaim"
+msgstr "Geri kazanılacak bir şey yok"
+
+#: appsweep/ui/page_cleanup.py:138
+msgid "No stale caches, no orphaned packages. This system is tidy."
+msgstr "Eskimiş önbellek yok, sahipsiz paket yok. Bu sistem düzenli."
+
+#: appsweep/ui/page_cleanup.py:144
+#, python-brace-format
+msgid "across {n} item you can clear"
+msgid_plural "across {n} items you can clear"
+msgstr[0] "temizleyebileceğiniz {n} kalemde"
+msgstr[1] "temizleyebileceğiniz {n} kalemde"
+
+#: appsweep/ui/page_cleanup.py:171
+#, python-brace-format
+msgid "Clear “{item}”?"
+msgstr "“{item}” temizlensin mi?"
+
+#: appsweep/ui/page_cleanup.py:172
+#, python-brace-format
+msgid "This frees about {size}."
+msgstr "Bu yaklaşık {size} yer açar."
+
+#: appsweep/ui/page_cleanup.py:174
+msgid "It runs:"
+msgstr "Şunu çalıştırır:"
+
+#: appsweep/ui/page_cleanup.py:176 appsweep/ui/page_leftovers.py:255
+#: appsweep/ui/removal.py:67 appsweep/ui/removal.py:377
+msgid "Cancel"
+msgstr "İptal"
+
+#: appsweep/ui/page_cleanup.py:188
+msgid "Clearing…"
+msgstr "Temizleniyor…"
+
+#: appsweep/ui/page_cleanup.py:196
+#, python-brace-format
+msgid "Freed about {size}."
+msgstr "Yaklaşık {size} yer açıldı."
+
+#: appsweep/ui/page_cleanup.py:199
+msgid "That did not complete — administrator access may have been declined."
+msgstr "Bu tamamlanmadı — yönetici yetkisi reddedilmiş olabilir."
+
+#: appsweep/ui/page_leftovers.py:22 appsweep/ui/removal.py:23
+msgid "Certain"
+msgstr "Kesin"
+
+#: appsweep/ui/page_leftovers.py:23 appsweep/ui/removal.py:24
+msgid "Likely"
+msgstr "Olası"
+
+#: appsweep/ui/page_leftovers.py:24 appsweep/ui/removal.py:25
+msgid "Guess"
+msgstr "Tahmin"
+
+#: appsweep/ui/page_leftovers.py:50
+msgid "Find what uninstalling left behind"
+msgstr "Kaldırma işleminin geride bıraktıklarını bulun"
+
+#: appsweep/ui/page_leftovers.py:52
+msgid ""
+"Package managers remove the program but keep your settings, caches and data. "
+"Over years that adds up, and nothing cleans it up for you.\n"
+"\n"
+"AppSweep lists directories under your home folder, /etc and /var/lib that no "
+"installed app accounts for. It matches by name, so it shows you how sure it "
+"is and never removes anything you have not ticked."
+msgstr ""
+"Paket yöneticileri programı kaldırır ama ayarlarınızı, önbelleklerinizi ve "
+"verinizi korur. Yıllar içinde bunlar birikir ve kimse sizin için "
+"temizlemez.\n"
+"\n"
+"AppSweep, ev klasörünüzün, /etc ve /var/lib altındaki, hiçbir kurulu "
+"uygulamanın sahiplenmediği dizinleri listeler. Eşleştirme isme göre "
+"yapıldığı için ne kadar emin olduğunu da gösterir ve işaretlemediğiniz "
+"hiçbir şeyi kaldırmaz."
+
+#: appsweep/ui/page_leftovers.py:61
+msgid "Scan for leftovers"
+msgstr "Kalıntıları tara"
+
+#: appsweep/ui/page_leftovers.py:69 appsweep/ui/page_leftovers.py:276
+#: appsweep/ui/removal.py:142
+msgid "Scanning"
+msgstr "Taranıyor"
+
+#: appsweep/ui/page_leftovers.py:70 appsweep/ui/page_leftovers.py:278
+msgid "Measuring directories and checking them against the package database…"
+msgstr "Dizinler ölçülüyor ve paket veritabanıyla karşılaştırılıyor…"
+
+#: appsweep/ui/page_leftovers.py:76
+msgid "Options"
+msgstr "Seçenekler"
+
+#: appsweep/ui/page_leftovers.py:78
+msgid "Include caches"
+msgstr "Önbellekleri de dahil et"
+
+#: appsweep/ui/page_leftovers.py:79
+msgid "~/.cache regenerates on its own, so it is skipped by default"
+msgstr "~/.cache kendini yeniden oluşturur, bu yüzden öntanımlı olarak atlanır"
+
+#: appsweep/ui/page_leftovers.py:84
+msgid "Include system directories"
+msgstr "Sistem dizinlerini de dahil et"
+
+#: appsweep/ui/page_leftovers.py:85
+msgid "/etc, /var/lib and /opt — needs administrator access to clean"
+msgstr "/etc, /var/lib ve /opt — temizlemek için yönetici yetkisi gerekir"
+
+#: appsweep/ui/page_leftovers.py:102
+msgid "Rescan"
+msgstr "Yeniden tara"
+
+#: appsweep/ui/page_leftovers.py:104
+msgid "Remove selected"
+msgstr "Seçilenleri kaldır"
+
+#: appsweep/ui/page_leftovers.py:129
+msgid "Still reading installed software — try again in a moment."
+msgstr "Kurulu yazılımlar hâlâ okunuyor — biraz sonra tekrar deneyin."
+
+#: appsweep/ui/page_leftovers.py:155
+msgid "Nothing unaccounted for"
+msgstr "Sahipsiz hiçbir şey yok"
+
+#: appsweep/ui/page_leftovers.py:157
+msgid ""
+"Every settings directory on this system belongs to something you still have "
+"installed."
+msgstr "Bu sistemdeki her ayar dizini, hâlâ kurulu olan bir şeye ait."
+
+#: appsweep/ui/page_leftovers.py:164
+#, python-brace-format
+msgid "{n} directory no installed app claims"
+msgid_plural "{n} directories no installed app claims"
+msgstr[0] "Hiçbir kurulu uygulamanın sahiplenmediği {n} dizin"
+msgstr[1] "Hiçbir kurulu uygulamanın sahiplenmediği {n} dizin"
+
+#: appsweep/ui/page_leftovers.py:169
+#, python-brace-format
+msgid ""
+"{size} in total. “Guess” entries are often legitimate — open the path before "
+"ticking it."
+msgstr ""
+"Toplam {size}. “Tahmin” olarak işaretlenenler genelde meşrudur — "
+"işaretlemeden önce yolu açıp bakın."
+
+#: appsweep/ui/page_leftovers.py:179
+msgid " · administrator access"
+msgstr " · yönetici yetkisi"
+
+#: appsweep/ui/page_leftovers.py:201
+msgid "Open this folder in Files"
+msgstr "Bu klasörü Dosyalar'da aç"
+
+#: appsweep/ui/page_leftovers.py:225
+#, python-brace-format
+msgid "{n} selected · {size}"
+msgstr "{n} seçildi · {size}"
+
+#: appsweep/ui/page_leftovers.py:236
+#, python-brace-format
+msgid "{n} directory, {size}."
+msgid_plural "{n} directories, {size}."
+msgstr[0] "{n} dizin, {size}."
+msgstr[1] "{n} dizin, {size}."
+
+#: appsweep/ui/page_leftovers.py:245
+#, python-brace-format
+msgid ""
+"{n} is outside your home directory and will be deleted outright, with "
+"administrator access."
+msgid_plural ""
+"{n} are outside your home directory and will be deleted outright, with "
+"administrator access."
+msgstr[0] ""
+"{n} tanesi ev dizininizin dışında ve yönetici yetkisiyle doğrudan silinecek."
+msgstr[1] ""
+"{n} tanesi ev dizininizin dışında ve yönetici yetkisiyle doğrudan silinecek."
+
+#: appsweep/ui/page_leftovers.py:252
+msgid "These go to the trash, so you can still get them back."
+msgstr "Bunlar çöp kutusuna gider, yani geri alabilirsiniz."
+
+#: appsweep/ui/page_leftovers.py:254
+msgid "Remove these leftovers?"
+msgstr "Bu kalıntılar kaldırılsın mı?"
+
+#: appsweep/ui/page_leftovers.py:256
+msgid "Remove"
+msgstr "Kaldır"
+
+#: appsweep/ui/page_leftovers.py:267
+msgid "Removing"
+msgstr "Kaldırılıyor"
+
+#: appsweep/ui/page_leftovers.py:268
+msgid "Moving files to the trash…"
+msgstr "Dosyalar çöp kutusuna taşınıyor…"
+
+#: appsweep/ui/page_leftovers.py:284
+#, python-brace-format
+msgid "Removed {n} leftover directory ({size} freed)."
+msgid_plural "Removed {n} leftover directories ({size} freed)."
+msgstr[0] "{n} kalıntı dizin kaldırıldı ({size} yer açıldı)."
+msgstr[1] "{n} kalıntı dizin kaldırıldı ({size} yer açıldı)."
+
+#: appsweep/ui/page_leftovers.py:292
+#, python-brace-format
+msgid "{n} path could not be removed."
+msgid_plural "{n} paths could not be removed."
+msgstr[0] "{n} yol kaldırılamadı."
+msgstr[1] "{n} yol kaldırılamadı."
+
+#: appsweep/ui/preferences.py:24 appsweep/ui/window.py:62
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: appsweep/ui/preferences.py:27
+msgid "General"
+msgstr "Genel"
+
+#: appsweep/ui/preferences.py:30
+msgid "Language"
+msgstr "Dil"
+
+#: appsweep/ui/preferences.py:32
+msgid ""
+"AppSweep starts in Turkish on a Turkish desktop and in English everywhere "
+"else. Your choice here overrides that."
+msgstr ""
+"AppSweep, Türkçe bir masaüstünde Türkçe, diğer her yerde İngilizce açılır. "
+"Buradaki seçiminiz bunun yerine geçer."
+
+#: appsweep/ui/preferences.py:42
+msgid "Interface language"
+msgstr "Arayüz dili"
+
+#: appsweep/ui/removal.py:51 appsweep/ui/removal.py:69
+msgid "Uninstall"
+msgstr "Kaldır"
+
+#: appsweep/ui/removal.py:78
+#, python-brace-format
+msgid "Uninstalling {n} app"
+msgid_plural "Uninstalling {n} apps"
+msgstr[0] "{n} uygulama kaldırılıyor"
+msgstr[1] "{n} uygulama kaldırılıyor"
+
+#: appsweep/ui/removal.py:80
+#, python-brace-format
+msgid "{size} of installed files"
+msgstr "{size} kurulu dosya"
+
+#: appsweep/ui/removal.py:103
+#, python-brace-format
+msgid "…and {n} more"
+msgstr "…ve {n} tane daha"
+
+#: appsweep/ui/removal.py:109
+msgid "How thoroughly"
+msgstr "Ne kadar kapsamlı"
+
+#: appsweep/ui/removal.py:110
+msgid "These apply to every app in this operation."
+msgstr "Bunlar bu işlemdeki her uygulama için geçerlidir."
+
+#: appsweep/ui/removal.py:113
+msgid "Remove settings and data too"
+msgstr "Ayarları ve veriyi de kaldır"
+
+#: appsweep/ui/removal.py:114
+msgid ""
+"Without this, config files are kept so a reinstall picks up where you left "
+"off"
+msgstr ""
+"Bu kapalıyken ayar dosyaları korunur, böylece yeniden kurulumda bıraktığınız "
+"yerden devam edersiniz"
+
+#: appsweep/ui/removal.py:120
+msgid "Remove dependencies nothing else needs"
+msgstr "Başka hiçbir şeyin ihtiyaç duymadığı bağımlılıkları kaldır"
+
+#: appsweep/ui/removal.py:121
+msgid "The equivalent of apt autoremove, run automatically"
+msgstr "apt autoremove'un karşılığı, otomatik olarak çalıştırılır"
+
+#: appsweep/ui/removal.py:127
+msgid "Move leftover files to the trash"
+msgstr "Kalıntı dosyaları çöp kutusuna taşı"
+
+#: appsweep/ui/removal.py:128
+msgid ""
+"Recoverable for as long as your trash keeps them. Turn off to delete "
+"immediately"
+msgstr ""
+"Çöp kutunuz onları tuttuğu sürece geri alınabilir. Hemen silmek için kapatın"
+
+#: appsweep/ui/removal.py:138
+msgid "Leftover files"
+msgstr "Kalıntı dosyalar"
+
+#: appsweep/ui/removal.py:139
+msgid "Searching your home directory and /etc…"
+msgstr "Ev dizininiz ve /etc aranıyor…"
+
+#: appsweep/ui/removal.py:142
+msgid "This takes a few seconds"
+msgstr "Bu birkaç saniye sürer"
+
+#: appsweep/ui/removal.py:148
+msgid "Commands"
+msgstr "Komutlar"
+
+#: appsweep/ui/removal.py:150
+msgid "Show exactly what will run"
+msgstr "Tam olarak ne çalışacağını göster"
+
+#: appsweep/ui/removal.py:151
+msgid "Nothing happens until you press Uninstall"
+msgstr "Kaldır düğmesine basmadan hiçbir şey olmaz"
+
+#: appsweep/ui/removal.py:187
+msgid "Uninstalling"
+msgstr "Kaldırılıyor"
+
+#: appsweep/ui/removal.py:188
+msgid "A password prompt will appear if administrator access is needed."
+msgstr "Yönetici yetkisi gerekirse bir parola istemi görünecek."
+
+#: appsweep/ui/removal.py:229
+#, python-brace-format
+msgid "No backend available for {name}."
+msgstr "{name} için kullanılabilir bir arka uç yok."
+
+#: appsweep/ui/removal.py:234
+#, python-brace-format
+msgid "{name} cannot be removed."
+msgstr "{name} kaldırılamaz."
+
+#: appsweep/ui/removal.py:249
+msgid "trash"
+msgstr "çöpe taşı"
+
+#: appsweep/ui/removal.py:250
+msgid "delete"
+msgstr "sil"
+
+#: appsweep/ui/removal.py:252
+msgid "nothing to do"
+msgstr "yapılacak bir şey yok"
+
+#: appsweep/ui/removal.py:299
+msgid ""
+"Nothing left behind — the package manager covers everything these apps "
+"installed."
+msgstr ""
+"Geride bir şey kalmamış — paket yöneticisi bu uygulamaların kurduğu her şeyi "
+"kapsıyor."
+
+#: appsweep/ui/removal.py:302
+msgid "No leftovers found"
+msgstr "Kalıntı bulunamadı"
+
+#: appsweep/ui/removal.py:310
+#, python-brace-format
+msgid ""
+"{n} paths · {size}. Matched by name, so review anything marked “Guess” "
+"before removing it."
+msgstr ""
+"{n} yol · {size}. Eşleştirme isme göre yapıldı, bu yüzden “Tahmin” olarak "
+"işaretlenenleri kaldırmadan önce gözden geçirin."
+
+#: appsweep/ui/removal.py:320
+#, python-brace-format
+msgid " · matched “{token}”"
+msgstr " · “{token}” ile eşleşti"
+
+#: appsweep/ui/removal.py:322
+msgid " · needs administrator access"
+msgstr " · yönetici yetkisi gerekir"
+
+#: appsweep/ui/removal.py:364
+msgid "Delete system files as administrator?"
+msgstr "Sistem dosyaları yönetici olarak silinsin mi?"
+
+#: appsweep/ui/removal.py:366
+#, python-brace-format
+msgid "{n} of the selected paths lives outside your home directory:"
+msgid_plural "{n} of the selected paths live outside your home directory:"
+msgstr[0] "Seçilen yollardan {n} tanesi ev dizininizin dışında:"
+msgstr[1] "Seçilen yollardan {n} tanesi ev dizininizin dışında:"
+
+#: appsweep/ui/removal.py:374
+msgid "These are deleted outright, not moved to the trash."
+msgstr "Bunlar çöp kutusuna taşınmaz, doğrudan silinir."
+
+#: appsweep/ui/removal.py:378
+msgid "Skip Those"
+msgstr "Onları Atla"
+
+#: appsweep/ui/removal.py:379
+msgid "Delete Them"
+msgstr "Onları Sil"
+
+#: appsweep/ui/removal.py:440
+msgid "Done"
+msgstr "Tamamlandı"
+
+#: appsweep/ui/removal.py:442
+msgid "The software and the leftovers you selected are gone."
+msgstr "Yazılım ve seçtiğiniz kalıntılar kaldırıldı."
+
+#: appsweep/ui/removal.py:446
+msgid "Finished with problems"
+msgstr "Sorunlarla tamamlandı"
+
+#: appsweep/ui/removal.py:448
+msgid ""
+"Some steps did not complete. The log below has the details — a cancelled "
+"password prompt is the usual cause."
+msgstr ""
+"Bazı adımlar tamamlanmadı. Ayrıntılar aşağıdaki kayıtta — en sık neden iptal "
+"edilmiş bir parola istemidir."
+
+#: appsweep/ui/window.py:38
+msgid "Applications"
+msgstr "Uygulamalar"
+
+#: appsweep/ui/window.py:41
+msgid "Leftovers"
+msgstr "Kalıntılar"
+
+#: appsweep/ui/window.py:45
+msgid "Reclaim"
+msgstr "Geri Kazan"
+
+#: appsweep/ui/window.py:56
+msgid "Rescan the system"
+msgstr "Sistemi yeniden tara"
+
+#: appsweep/ui/window.py:63
+msgid "Keyboard Shortcuts"
+msgstr "Klavye Kısayolları"
+
+#: appsweep/ui/window.py:64
+msgid "About AppSweep"
+msgstr "AppSweep Hakkında"
+
+#: appsweep/ui/window.py:67
+msgid "Main menu"
+msgstr "Ana menü"
+
+#: appsweep/ui/window.py:72
+msgid ""
+"AppSweep deletes files. Every removal is listed before it runs, and "
+"leftovers go to the trash by default."
+msgstr ""
+"AppSweep dosya siler. Her kaldırma işlemi çalışmadan önce listelenir ve "
+"kalıntılar öntanımlı olarak çöp kutusuna gider."
+
+#: appsweep/ui/window.py:76
+msgid "Got it"
+msgstr "Anladım"
+
+#: appsweep/ui/window.py:113
+#, python-brace-format
+msgid "Found {real} application among {total} installed packages."
+msgid_plural "Found {real} applications among {total} installed packages."
+msgstr[0] "{total} kurulu paket arasında {real} uygulama bulundu."
+msgstr[1] "{total} kurulu paket arasında {real} uygulama bulundu."

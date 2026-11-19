@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=AppSweep
+GenericName=Software Remover
+GenericName[tr]=Yazılım Kaldırma Aracı
+Comment=Uninstall software from any source and clean up what it leaves behind
+Comment[tr]=Her kaynaktan gelen yazılımı kaldırın ve geride bıraktıklarını temizleyin
+Keywords=uninstall;remove;clean;package;apt;flatpak;snap;appimage;disk;space;
+Keywords[tr]=kaldır;sil;temizle;paket;apt;flatpak;snap;appimage;disk;alan;kalıntı;
+Exec=appsweep
+Icon=io.github.appsweep.AppSweep
+Terminal=false
+Categories=System;PackageManager;
+StartupNotify=true

@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Design and research scratch space, not part of the project
+.oil-ui/
+
+# gettext working files
+po/*.mo
+po/*~
+po/*.po.bak

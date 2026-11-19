@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""AppSweep launcher. Works from a checkout or from an installed copy."""
+import os
+import sys
+
+_here = os.path.dirname(os.path.abspath(__file__))
+_root = os.path.dirname(_here)
+if os.path.isdir(os.path.join(_root, "appsweep")):
+    sys.path.insert(0, _root)
+
+from appsweep.__main__ import main  # noqa: E402
+
+if __name__ == "__main__":
+    raise SystemExit(main())

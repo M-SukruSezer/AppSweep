@@ -1,0 +1,8 @@
+# AppSweep needs no Python packages from PyPI.
+#
+# It depends on system packages instead, because PyGObject's GTK4 bindings
+# must match the system libraries:
+#
+#   Debian / Ubuntu:  sudo apt install python3-gi gir1.2-gtk-4.0 gir1.2-adw-1
+#   Fedora:           sudo dnf install python3-gobject gtk4 libadwaita
+#   Arch:             sudo pacman -S python-gobject gtk4 libadwaita
