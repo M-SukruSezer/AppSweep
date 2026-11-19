@@ -8,6 +8,8 @@
 
 [Türkçe](README.tr.md) · English
 
+**[appsweep website](https://m-sukrusezer.github.io/AppSweep/)**
+
 </div>
 
 AppSweep lists everything installed on this machine — no matter which

@@ -8,6 +8,8 @@
 
 Türkçe · [English](README.md)
 
+**[Proje sayfası](https://m-sukrusezer.github.io/AppSweep/tr.html)**
+
 </div>
 
 AppSweep, bu makinede kurulu olan her şeyi — hangi paket yöneticisi
