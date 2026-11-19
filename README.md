@@ -97,24 +97,70 @@ it does not:
 
 ## Install
 
-System dependencies (no PyPI packages needed):
+Ready-made packages are on the
+[releases page](https://github.com/M-SukruSezer/AppSweep/releases).
+
+### Debian, Ubuntu and derivatives
 
 ```bash
-sudo apt install python3-gi gir1.2-gtk-4.0 gir1.2-adw-1
+sudo apt install ./appsweep_0.1.0_all.deb
 ```
 
-On Fedora `python3-gobject gtk4 libadwaita`, on Arch
-`python-gobject gtk4 libadwaita`.
+Using `apt` rather than `dpkg -i` pulls the dependencies in at the same
+time. AppSweep then appears in your application menu, and `appsweep` is on
+your `PATH`.
 
-Then:
+### Fedora, RHEL, openSUSE
 
 ```bash
+sudo dnf install ./appsweep-0.1.0-1.noarch.rpm
+```
+
+On openSUSE use `sudo zypper install ./appsweep-0.1.0-1.noarch.rpm`.
+
+### From source, for one user only
+
+```bash
+tar -xzf appsweep-0.1.0.tar.gz
+cd appsweep-0.1.0
 ./install.sh
 ```
 
-It installs into `~/.local`, needs no root, and places the icon and the
-desktop entry so AppSweep appears in your application menu. To run it
-straight from a checkout, `./bin/appsweep` is enough.
+This installs into `~/.local`, needs no root, and places the icon and the
+desktop entry. First install the runtime dependencies, which are system
+packages rather than PyPI ones:
+
+| Distribution | Command |
+|---|---|
+| Debian, Ubuntu | `sudo apt install python3-gi gir1.2-gtk-4.0 gir1.2-adw-1` |
+| Fedora | `sudo dnf install python3-gobject gtk4 libadwaita` |
+| Arch | `sudo pacman -S python-gobject gtk4 libadwaita` |
+
+To run straight from a checkout without installing anything,
+`./bin/appsweep` is enough.
+
+### Building the packages yourself
+
+```bash
+./packaging/build.sh          # everything this machine can build
+./packaging/build.sh deb      # or just one of them
+```
+
+The results land in `dist/`. The `.deb` and the `.rpm` are both laid out
+by `packaging/install-tree.sh`, so the two always install the same files
+in the same places. Building the `.rpm` needs `rpmbuild`; building the
+`.deb` needs `dpkg-deb`, and `fakeroot` if you want root-owned files
+without being root.
+
+### Removing it
+
+```bash
+sudo apt remove appsweep        # or: sudo dnf remove appsweep
+```
+
+The source install can be undone by deleting `~/.local/bin/appsweep`,
+`~/.local/share/appsweep` and the desktop entry. Your own settings live in
+`~/.config/appsweep/settings.json`.
 
 ## Command line
 
@@ -196,6 +242,11 @@ appsweep/
     ├── app.py  window.py  style.py  appicon.py  preferences.py
     ├── page_apps.py  page_leftovers.py  page_cleanup.py
     └── removal.py     review → progress → result
+
+packaging/
+├── install-tree.sh    where every installed file goes; shared by both
+├── appsweep.spec      RPM recipe
+└── build.sh           builds .tar.gz, .deb and .rpm into dist/
 ```
 
 Adding a packaging format means subclassing `Backend` and adding it to

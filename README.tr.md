@@ -96,24 +96,70 @@ Bu program dosya siler, dolayısıyla asıl emek silmediği yerlere harcandı:
 
 ## Kurulum
 
-Sistem bağımlılıkları (PyPI paketi gerekmez):
+Hazır paketler
+[sürümler sayfasında](https://github.com/M-SukruSezer/AppSweep/releases).
+
+### Debian, Ubuntu ve türevleri
 
 ```bash
-sudo apt install python3-gi gir1.2-gtk-4.0 gir1.2-adw-1
+sudo apt install ./appsweep_0.1.0_all.deb
 ```
 
-Fedora'da `python3-gobject gtk4 libadwaita`, Arch'ta
-`python-gobject gtk4 libadwaita`.
+`dpkg -i` yerine `apt` kullanmak bağımlılıkları da beraberinde getirir.
+Kurulumdan sonra AppSweep uygulama menünüzde görünür, `appsweep` komutu da
+`PATH` üzerinde olur.
 
-Sonra:
+### Fedora, RHEL, openSUSE
 
 ```bash
+sudo dnf install ./appsweep-0.1.0-1.noarch.rpm
+```
+
+openSUSE'de `sudo zypper install ./appsweep-0.1.0-1.noarch.rpm`.
+
+### Kaynaktan, yalnızca tek kullanıcı için
+
+```bash
+tar -xzf appsweep-0.1.0.tar.gz
+cd appsweep-0.1.0
 ./install.sh
 ```
 
 `~/.local` altına kurar, kök yetkisi istemez, simgeyi ve masaüstü
-girdisini de yerleştirir; böylece AppSweep uygulama menünüzde görünür.
-Doğrudan depodan çalıştırmak için `./bin/appsweep` yeterli.
+girdisini de yerleştirir. Önce çalışma zamanı bağımlılıklarını kurun;
+bunlar PyPI paketi değil, sistem paketleridir:
+
+| Dağıtım | Komut |
+|---|---|
+| Debian, Ubuntu | `sudo apt install python3-gi gir1.2-gtk-4.0 gir1.2-adw-1` |
+| Fedora | `sudo dnf install python3-gobject gtk4 libadwaita` |
+| Arch | `sudo pacman -S python-gobject gtk4 libadwaita` |
+
+Hiçbir şey kurmadan doğrudan depodan çalıştırmak için `./bin/appsweep`
+yeterli.
+
+### Paketleri kendiniz üretmek
+
+```bash
+./packaging/build.sh          # bu makinenin üretebildiği her şey
+./packaging/build.sh deb      # ya da yalnızca biri
+```
+
+Sonuçlar `dist/` altına düşer. `.deb` ve `.rpm` paketlerinin ikisi de
+`packaging/install-tree.sh` tarafından yerleştirilir, böylece iki paket
+her zaman aynı dosyaları aynı yerlere kurar. `.rpm` için `rpmbuild`,
+`.deb` için `dpkg-deb` gerekir; kök olmadan kök sahipli dosyalar
+istiyorsanız `fakeroot` da.
+
+### Kaldırmak
+
+```bash
+sudo apt remove appsweep        # ya da: sudo dnf remove appsweep
+```
+
+Kaynaktan kurulum, `~/.local/bin/appsweep`, `~/.local/share/appsweep` ve
+masaüstü girdisi silinerek geri alınır. Kendi ayarlarınız
+`~/.config/appsweep/settings.json` dosyasında durur.
 
 ## Komut satırı
 
@@ -194,6 +240,11 @@ appsweep/
     ├── app.py  window.py  style.py  appicon.py  preferences.py
     ├── page_apps.py  page_leftovers.py  page_cleanup.py
     └── removal.py     inceleme → ilerleme → sonuç
+
+packaging/
+├── install-tree.sh    kurulan her dosyanın yeri; ikisi de bunu kullanır
+├── appsweep.spec      RPM tarifi
+└── build.sh           dist/ altına .tar.gz, .deb ve .rpm üretir
 ```
 
 Yeni bir paket biçimi eklemek, `Backend` sınıfından türetip

@@ -11,3 +11,4 @@ __pycache__/
 po/*.mo
 po/*~
 po/*.po.bak
+dist/
