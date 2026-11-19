@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AppSweep 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/M-SukruSezer/AppSweep/issues\n"
-"POT-Creation-Date: 2026-11-19 07:58+0300\n"
+"POT-Creation-Date: 2026-11-20 02:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,37 +55,37 @@ msgid ""
 "cache (cargo install cargo-cache) and AppSweep will offer to trim it."
 msgstr ""
 
-#: appsweep/backends/dpkg.py:125
+#: appsweep/backends/dpkg.py:141
 #, python-brace-format
 msgid ""
 "“{pkg}” is marked essential or required by the distribution. AppSweep will "
 "not remove it."
 msgstr ""
 
-#: appsweep/backends/dpkg.py:140
+#: appsweep/backends/dpkg.py:156
 #, python-brace-format
 msgid "Purge {pkg}"
 msgstr ""
 
-#: appsweep/backends/dpkg.py:140 appsweep/backends/pacman.py:83
-#: appsweep/backends/rpmdnf.py:67
+#: appsweep/backends/dpkg.py:156 appsweep/backends/pacman.py:87
+#: appsweep/backends/rpmdnf.py:80
 #, python-brace-format
 msgid "Remove {pkg}"
 msgstr ""
 
-#: appsweep/backends/dpkg.py:142
+#: appsweep/backends/dpkg.py:158
 msgid " and its unused dependencies"
 msgstr ""
 
-#: appsweep/backends/dpkg.py:148
+#: appsweep/backends/dpkg.py:164
 msgid "Purge also deletes this package's files under /etc."
 msgstr ""
 
-#: appsweep/backends/dpkg.py:156
+#: appsweep/backends/dpkg.py:172
 msgid "Remove packages no longer needed by anything"
 msgstr ""
 
-#: appsweep/backends/dpkg.py:165
+#: appsweep/backends/dpkg.py:181
 msgid "Empty the downloaded .deb cache"
 msgstr ""
 
@@ -140,21 +140,21 @@ msgstr ""
 msgid "Empty npm's download cache"
 msgstr ""
 
-#: appsweep/backends/pacman.py:72 appsweep/backends/rpmdnf.py:61
+#: appsweep/backends/pacman.py:76 appsweep/backends/rpmdnf.py:74
 #, python-brace-format
 msgid "“{pkg}” is part of the base system. AppSweep will not remove it."
 msgstr ""
 
-#: appsweep/backends/pacman.py:95
+#: appsweep/backends/pacman.py:99
 #, python-brace-format
 msgid "Remove {n} orphans"
 msgstr ""
 
-#: appsweep/backends/pacman.py:107
+#: appsweep/backends/pacman.py:111
 msgid "Keep one cached version per package"
 msgstr ""
 
-#: appsweep/backends/pacman.py:113
+#: appsweep/backends/pacman.py:117
 msgid "Remove cached packages"
 msgstr ""
 
@@ -202,17 +202,17 @@ msgstr ""
 msgid "Locate pipx's cache"
 msgstr ""
 
-#: appsweep/backends/rpmdnf.py:72 appsweep/backends/rpmdnf.py:82
+#: appsweep/backends/rpmdnf.py:85 appsweep/backends/rpmdnf.py:95
 msgid "Remove unneeded dependencies"
 msgstr ""
 
-#: appsweep/backends/rpmdnf.py:74
+#: appsweep/backends/rpmdnf.py:87
 msgid ""
 "dnf keeps files under /etc that you have modified; AppSweep lists them as "
 "leftovers afterwards."
 msgstr ""
 
-#: appsweep/backends/rpmdnf.py:88
+#: appsweep/backends/rpmdnf.py:101
 msgid "Empty the dnf cache"
 msgstr ""
 

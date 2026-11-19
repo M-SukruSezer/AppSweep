@@ -6,15 +6,33 @@ import os
 from ..models import App, Plan, Source, Step
 from ..i18n import _
 from ..util import dir_size, have, run, tokenize
-from .base import Backend
+from .base import Backend, launcher_packages
 
 # Packages whose removal would take the desktop or the system with them.
+#
+# Split in two on purpose. Matching every one of these as a prefix marks
+# gnome-shell-extension-manager as critical because it begins with
+# "gnome-shell" — an ordinary application that the user could then neither
+# see nor remove. Only real families belong in the prefix list.
+_CRITICAL_EXACT = frozenset({
+    "libc6", "dpkg", "apt", "bash", "coreutils", "sudo",
+    "gnome-shell", "mutter", "gdm3", "network-manager",
+    "policykit-1", "polkitd",
+})
 _CRITICAL_PREFIXES = (
     "linux-image", "linux-headers", "linux-modules", "grub", "shim",
-    "systemd", "libc6", "dpkg", "apt", "bash", "coreutils", "sudo",
-    "ubuntu-desktop", "ubuntu-minimal", "ubuntu-standard", "gnome-shell",
-    "xorg", "mutter", "gdm3", "policykit", "polkitd", "network-manager",
+    "systemd", "ubuntu-desktop", "ubuntu-minimal", "ubuntu-standard",
+    "xorg",
 )
+
+
+def _is_critical(pkg: str, essential: str, priority: str) -> bool:
+    return (
+        essential.strip().lower() == "yes"
+        or priority.strip().lower() in ("required", "important")
+        or pkg in _CRITICAL_EXACT
+        or pkg.startswith(_CRITICAL_PREFIXES)
+    )
 _LIBRARY_SECTIONS = {
     "libs", "libdevel", "oldlibs", "debug", "kernel", "doc", "fonts",
     "localization", "translations", "perl", "python", "ruby", "javascript",
@@ -40,7 +58,7 @@ class DpkgBackend(Backend):
         if not res.ok and not res.out:
             return []
 
-        desktop_names = _desktop_exec_names()
+        launchers = launcher_packages("dpkg")
         apps: list[App] = []
         for line in res.out.splitlines():
             parts = line.split("\t")
@@ -56,11 +74,7 @@ class DpkgBackend(Backend):
                 size = 0
 
             sec = section.rsplit("/", 1)[-1].lower()
-            critical = (
-                essential.strip().lower() == "yes"
-                or prio.strip().lower() in ("required", "important")
-                or pkg.startswith(_CRITICAL_PREFIXES)
-            )
+            critical = _is_critical(pkg, essential, prio)
             is_lib = (
                 critical
                 or sec in _LIBRARY_SECTIONS
@@ -69,9 +83,11 @@ class DpkgBackend(Backend):
                 or pkg.endswith(("-dev", "-doc", "-common", "-data", "-dbg",
                                  "-l10n", "-locale"))
             )
-            # A package that ships a .desktop launcher is a real app whatever
-            # its section says — unless it is system-critical.
-            if not critical and pkg in desktop_names:
+            # A package that ships a .desktop launcher is an application
+            # whatever its section says — unless it is system-critical.
+            # Sections like admin, utils and devel hold both plumbing and
+            # real programs, so the launcher is the better signal.
+            if not critical and pkg in launchers:
                 is_lib = False
 
             apps.append(
@@ -177,17 +193,3 @@ def _strip_suffixes(pkg: str) -> list[str]:
         if pkg.endswith(suf) and len(pkg) > len(suf) + 2:
             out.append(pkg[: -len(suf)])
     return out
-
-
-def _desktop_exec_names() -> set[str]:
-    """Package-ish names harvested from installed .desktop launchers."""
-    names: set[str] = set()
-    for d in ("/usr/share/applications", "/usr/local/share/applications"):
-        try:
-            entries = os.listdir(d)
-        except OSError:
-            continue
-        for fn in entries:
-            if fn.endswith(".desktop"):
-                names.add(fn[: -len(".desktop")].lower())
-    return names

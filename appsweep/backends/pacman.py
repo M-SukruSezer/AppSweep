@@ -4,7 +4,7 @@ from __future__ import annotations
 from ..models import App, Plan, Source, Step
 from ..i18n import _
 from ..util import dir_size, have, run, tokenize
-from .base import Backend
+from .base import Backend, launcher_packages
 
 _CRITICAL = ("linux", "glibc", "systemd", "pacman", "bash", "coreutils",
              "grub", "sudo", "filesystem", "gcc-libs", "base")
@@ -22,6 +22,7 @@ class PacmanBackend(Backend):
         res = run(["pacman", "-Qi"], timeout=90)
         if not res.ok and not res.out:
             return []
+        launchers = launcher_packages("pacman")
         out: list[App] = []
         cur: dict[str, str] = {}
 
@@ -31,6 +32,10 @@ class PacmanBackend(Backend):
                 return
             critical = name in _CRITICAL or name.startswith("linux")
             reason = cur.get("Install Reason", "")
+            is_lib = (critical or name.startswith("lib")
+                      or name.endswith(("-doc", "-docs")))
+            if not critical and name in launchers:
+                is_lib = False
             out.append(App(
                 ident=name,
                 name=name,
@@ -39,8 +44,7 @@ class PacmanBackend(Backend):
                 size_bytes=_parse_isize(cur.get("Installed Size", "")),
                 summary=cur.get("Description", ""),
                 tokens=tokenize(name),
-                is_library=(critical or name.startswith("lib")
-                            or name.endswith(("-doc", "-docs"))),
+                is_library=is_lib,
                 extra={"critical": "1" if critical else "",
                        "reason": reason},
             ))

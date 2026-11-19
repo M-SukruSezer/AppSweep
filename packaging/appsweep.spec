@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:           %{appname}
-Version:        0.1.1
+Version:        0.1.2
 Release:        1%{?dist}
 Summary:        One uninstaller for every way Linux installs software
 Summary(tr):    Linux'ta kurduğunuz her yazılımı tek bir yerden kaldırın
@@ -61,6 +61,13 @@ python3 -m compileall -q appsweep
 %{_datadir}/doc/appsweep/
 
 %changelog
+* Fri Nov 20 2026 Muhammed Şükrü SEZER <M-SukruSezer@users.noreply.github.com> - 0.1.2-1
+- List applications installed from a package file. A package was only
+  recognised as an application when its launcher filename matched its
+  package name, which is not how launchers are named any more, so
+  software installed from .deb or .rpm was filed as a library and hidden.
+- Stop treating gnome-shell-extension-manager as part of the shell.
+
 * Thu Nov 19 2026 Muhammed Şükrü SEZER <M-SukruSezer@users.noreply.github.com> - 0.1.1-1
 - Fix the application icon not appearing in the desktop: a comment above
   the <svg> element kept gdk-pixbuf from recognising the file.

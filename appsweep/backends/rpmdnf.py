@@ -4,10 +4,17 @@ from __future__ import annotations
 from ..models import App, Plan, Source, Step
 from ..i18n import _
 from ..util import have, run, tokenize
-from .base import Backend
+from .base import Backend, launcher_packages
 
-_CRITICAL = ("kernel", "glibc", "systemd", "dnf", "rpm", "bash", "coreutils",
-             "grub2", "shim", "sudo", "gnome-shell", "polkit", "NetworkManager")
+# Exact names where the rest of the family is ordinary software, and
+# prefixes where the whole family really is part of the base system. See
+# the note in dpkg.py: matching gnome-shell as a prefix also catches
+# gnome-shell-extension-manager.
+_CRITICAL_EXACT = frozenset({
+    "glibc", "dnf", "rpm", "bash", "coreutils", "sudo",
+    "gnome-shell", "polkit", "NetworkManager",
+})
+_CRITICAL_PREFIXES = ("kernel", "systemd", "grub2", "shim")
 
 
 class DnfBackend(Backend):
@@ -26,6 +33,7 @@ class DnfBackend(Backend):
         )
         if not res.ok and not res.out:
             return []
+        launchers = launcher_packages("rpm")
         out: list[App] = []
         for line in res.out.splitlines():
             parts = line.split("\t")
@@ -37,7 +45,8 @@ class DnfBackend(Backend):
                 sz = int(size)
             except ValueError:
                 sz = 0
-            critical = name.startswith(_CRITICAL)
+            critical = (name in _CRITICAL_EXACT
+                        or name.startswith(_CRITICAL_PREFIXES))
             is_lib = (
                 critical
                 or name.startswith(("lib", "python3-", "perl-", "glibc",
@@ -46,6 +55,10 @@ class DnfBackend(Backend):
                                   "-filesystem", "-langpack"))
                 or "System Environment" in group
             )
+            # Shipping a launcher settles it: this is an application,
+            # whatever group the package declares.
+            if not critical and name in launchers:
+                is_lib = False
             out.append(App(
                 ident=name, name=name, version=ver, source=Source.DNF,
                 size_bytes=sz, summary=summary.strip(),

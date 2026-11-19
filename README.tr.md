@@ -104,7 +104,7 @@ Hazır paketler
 ### Debian, Ubuntu ve türevleri
 
 ```bash
-sudo apt install ./appsweep_0.1.1_all.deb
+sudo apt install ./appsweep_0.1.2_all.deb
 ```
 
 `dpkg -i` yerine `apt` kullanmak bağımlılıkları da beraberinde getirir.
@@ -114,16 +114,16 @@ Kurulumdan sonra AppSweep uygulama menünüzde görünür, `appsweep` komutu da
 ### Fedora, RHEL, openSUSE
 
 ```bash
-sudo dnf install ./appsweep-0.1.1-1.noarch.rpm
+sudo dnf install ./appsweep-0.1.2-1.noarch.rpm
 ```
 
-openSUSE'de `sudo zypper install ./appsweep-0.1.1-1.noarch.rpm`.
+openSUSE'de `sudo zypper install ./appsweep-0.1.2-1.noarch.rpm`.
 
 ### Kaynaktan, yalnızca tek kullanıcı için
 
 ```bash
-tar -xzf appsweep-0.1.1.tar.gz
-cd appsweep-0.1.1
+tar -xzf appsweep-0.1.2.tar.gz
+cd appsweep-0.1.2
 ./install.sh
 ```
 

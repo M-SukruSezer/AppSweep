@@ -20,7 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from appsweep import (icons, leftovers, safety,          # noqa: E402
                       selfremove, util)
-from appsweep.backends import cargo, npm, pip, pipx       # noqa: E402
+from appsweep.backends import (base, cargo, dpkg,        # noqa: E402
+                               npm, pip, pipx)
 from appsweep.models import App, Plan, Residue, Source    # noqa: E402
 
 
@@ -719,6 +720,99 @@ class TestIconAssets(unittest.TestCase):
     def test_desktop_entry_points_at_the_icon(self):
         text = (self.ROOT / "data/io.github.appsweep.AppSweep.desktop").read_text()
         self.assertIn("Icon=io.github.appsweep.AppSweep", text)
+
+
+# ------------------------------------------------------- what is an app
+DPKG_LINES = "\n".join([
+    # package, version, size, section, priority, essential, summary
+    "appsweep\t0.1.2\t372\tadmin\toptional\tno\tuninstaller",
+    "vendorapp\t1.0\t900\tutils\toptional\tno\ta vendor app",
+    "gnome-shell\t50\t9000\tgnome\toptional\tno\tthe shell",
+    "gnome-shell-extension-manager\t0.6\t800\tgnome\toptional\tno\tmanager",
+    "libfoo1\t1.0\t100\tlibs\toptional\tno\ta library",
+    "systemd-oomd\t255\t50\tadmin\toptional\tno\toom daemon",
+])
+
+
+class TestLauncherOwnership(unittest.TestCase):
+    """Who owns a .desktop file is a question for the package database.
+
+    Comparing a package name to a launcher filename fails for every
+    application that names its launcher in reverse DNS, which is most of
+    them: appsweep installs io.github.appsweep.AppSweep.desktop.
+    """
+
+    def _launchers(self, output):
+        with mock.patch.object(base, "have", return_value=True), \
+             mock.patch.object(base.os, "listdir",
+                               return_value=["a.desktop", "b.desktop"]), \
+             mock.patch.object(base, "run", return_value=_result(output)):
+            return base.launcher_packages("dpkg")
+
+    def test_reverse_dns_launcher_is_attributed_to_its_package(self):
+        got = self._launchers(
+            "appsweep: /usr/share/applications/io.github.appsweep.AppSweep.desktop")
+        self.assertEqual(got, {"appsweep"})
+
+    def test_architecture_qualifier_is_not_part_of_the_name(self):
+        got = self._launchers(
+            "foo:amd64: /usr/share/applications/foo.desktop")
+        self.assertEqual(got, {"foo"})
+
+    def test_a_launcher_claimed_by_several_packages_credits_each(self):
+        got = self._launchers(
+            "one, two: /usr/share/applications/shared.desktop")
+        self.assertEqual(got, {"one", "two"})
+
+    def test_no_desktop_directories_means_no_claims(self):
+        with mock.patch.object(base.os, "listdir", side_effect=OSError):
+            self.assertEqual(base.launcher_packages("dpkg"), set())
+
+
+class TestDpkgClassification(unittest.TestCase):
+    def _apps(self, launchers):
+        def fake_run(argv, **kw):
+            if argv[0] == "dpkg-query" and "-W" in argv:
+                return _result(DPKG_LINES + "\n")
+            return _result("", code=1)
+
+        with mock.patch.object(dpkg, "run", fake_run), \
+             mock.patch.object(dpkg, "launcher_packages",
+                               return_value=set(launchers)):
+            return {a.ident: a for a in dpkg.DpkgBackend().list_apps()}
+
+    def test_a_package_that_ships_a_launcher_is_an_application(self):
+        # Both sit in sections the heuristics would otherwise call library.
+        apps = self._apps({"appsweep", "vendorapp"})
+        self.assertFalse(apps["appsweep"].is_library)
+        self.assertFalse(apps["vendorapp"].is_library)
+
+    def test_without_a_launcher_those_sections_stay_hidden(self):
+        apps = self._apps(set())
+        self.assertTrue(apps["appsweep"].is_library)
+
+    def test_a_library_stays_a_library(self):
+        apps = self._apps({"appsweep"})
+        self.assertTrue(apps["libfoo1"].is_library)
+
+    def test_critical_names_match_exactly_not_as_prefixes(self):
+        # gnome-shell-extension-manager is an ordinary application that
+        # merely begins with the name of one that is not.
+        apps = self._apps({"gnome-shell", "gnome-shell-extension-manager"})
+        self.assertTrue(apps["gnome-shell"].extra["critical"])
+        self.assertFalse(apps["gnome-shell-extension-manager"].extra["critical"])
+        self.assertFalse(apps["gnome-shell-extension-manager"].is_library)
+
+    def test_real_families_are_still_matched_by_prefix(self):
+        apps = self._apps(set())
+        self.assertTrue(apps["systemd-oomd"].extra["critical"])
+
+    def test_a_launcher_cannot_make_a_critical_package_removable(self):
+        apps = self._apps({"gnome-shell"})
+        self.assertTrue(apps["gnome-shell"].is_library)
+        plan = dpkg.DpkgBackend().removal_plan(
+            apps["gnome-shell"], purge=True, autoremove=True)
+        self.assertEqual(plan.steps, [])
 
 
 # -------------------------------------------------------------- selfremove

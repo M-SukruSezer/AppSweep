@@ -105,7 +105,7 @@ Ready-made packages are on the
 ### Debian, Ubuntu and derivatives
 
 ```bash
-sudo apt install ./appsweep_0.1.1_all.deb
+sudo apt install ./appsweep_0.1.2_all.deb
 ```
 
 Using `apt` rather than `dpkg -i` pulls the dependencies in at the same
@@ -115,16 +115,16 @@ your `PATH`.
 ### Fedora, RHEL, openSUSE
 
 ```bash
-sudo dnf install ./appsweep-0.1.1-1.noarch.rpm
+sudo dnf install ./appsweep-0.1.2-1.noarch.rpm
 ```
 
-On openSUSE use `sudo zypper install ./appsweep-0.1.1-1.noarch.rpm`.
+On openSUSE use `sudo zypper install ./appsweep-0.1.2-1.noarch.rpm`.
 
 ### From source, for one user only
 
 ```bash
-tar -xzf appsweep-0.1.1.tar.gz
-cd appsweep-0.1.1
+tar -xzf appsweep-0.1.2.tar.gz
+cd appsweep-0.1.2
 ./install.sh
 ```
 
