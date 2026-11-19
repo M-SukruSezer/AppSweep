@@ -8,7 +8,7 @@
 
 [Türkçe](README.tr.md) · English
 
-**[appsweep website](https://m-sukrusezer.github.io/AppSweep/)**
+**[Website](https://m-sukrusezer.github.io/AppSweep/)**
 
 </div>
 
