@@ -74,36 +74,31 @@
         <h3>sources, one window</h3><p>apt, dnf and pacman for the system; Flatpak, Snap and AppImage for the portable ones; pip, pipx, npm and cargo for the language managers that nothing else tracks.</p></div>
       <div class="card"><span class="big">GB</span>
         <h3>measured, not estimated</h3><p>Every row carries the space it really takes on disk, so the largest thing you no longer use is the first thing you see.</p></div>
-      <div class="card"><span class="big">·</span>
-        <h3>with its own icon</h3><p>Icons come from the desktop entries already on the system, and an ambiguous match is dropped rather than guessed — a wrong logo invites you to remove the wrong thing.</p></div>
+      <div class="card"><h3>Every row with its own icon</h3>
+        <p>Icons come from the desktop entries already on the system, and an ambiguous match is dropped rather than guessed — a wrong logo invites you to remove the wrong thing.</p></div>
     </div>
   </div>
 </section>
 
-<div class="stage-outer">
-  <div class="stage">
-    <div class="scene">
-      <div class="footprint"></div>
-      <span class="speck s1"></span>
-      <span class="speck s2"></span>
-      <span class="speck s3"></span>
-      <div class="tile"></div>
-    </div>
-    <p class="caption">
-      <span>You remove an application…</span>
-      <span>…but this is what it leaves behind.</span>
-      <span>AppSweep finds it, and clears it.</span>
-    </p>
-  </div>
-</div>
-
-<section>
+<section class="views">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow">Leftovers</p>
+      <p class="eyebrow">The three views</p>
       <h2>The program goes. Its settings, caches and data stay.</h2>
       <p class="lede">No package manager cleans these up, which is why a machine that has been in use for years carries folders belonging to software removed long ago. AppSweep lists the ones no installed application accounts for, tells you how sure it is about each, and sends what you confirm to the trash.</p>
     </div>
+    <figure class="view reveal">
+      <img src="screenshot-leftovers-en.png" alt="The Leftovers view listing orphaned directories with confidence labels and sizes" loading="lazy">
+      <figcaption><b>Leftovers.</b> Directories under your home folder, /etc and /var/lib that no installed application accounts for. Each one is marked certain, likely or a guess, and a guess is never ticked for you.</figcaption>
+    </figure>
+    <figure class="view reveal">
+      <img src="screenshot-reclaim-en.png" alt="The Reclaim view showing 11 GB of reclaimable space" loading="lazy">
+      <figcaption><b>Reclaim.</b> Download caches, orphaned dependencies and superseded snap revisions — none of it something you chose to install, all of it measured rather than estimated.</figcaption>
+    </figure>
+    <figure class="view reveal">
+      <img src="screenshot-uninstall-en.png" alt="The uninstall confirmation listing five applications and the removal options" loading="lazy">
+      <figcaption><b>Before anything happens.</b> Remove several at once and the confirmation shows what each one is, how thorough the removal will be, and the exact commands that will run.</figcaption>
+    </figure>
   </div>
 </section>
 

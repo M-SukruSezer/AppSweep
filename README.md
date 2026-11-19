@@ -67,7 +67,7 @@ months ago, including software removed before AppSweep existed.
 **Reclaim** — space you can get back: download caches, orphaned
 dependencies, superseded snap revisions. Each with its measured size.
 
-![Flatpak applications](docs/screenshot-flatpak.png)
+![The Leftovers view](docs/screenshot-leftovers-en.png)
 
 ## Safety model
 

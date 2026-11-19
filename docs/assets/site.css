@@ -161,52 +161,23 @@ h2 {
 }
 .lede { margin: 16px 0 0; color: var(--dim); font-size: clamp(16px, 1.6vw, 18.5px); }
 
-/* -------------------------------------------------------- the narrative */
-/* The protagonist comes from the product: an application tile, and the
-   footprint it leaves when it is taken away. */
-/* The stage is held by CSS sticky and only scrubbed by the library.
-   Pinning it with ScrollTrigger left no space reserved in the flow, so the
-   scene drew on top of the section above it. */
-.stage-outer { position: relative; height: 300vh; }
-.stage {
-  position: sticky; top: 0;
-  height: 100svh; display: grid; place-items: center;
-  overflow: hidden;
+/* ---------------------------------------------------------------- views */
+/* The screenshots are the argument, so they get the room: full column
+   width, generous spacing, and a caption that says what is being looked
+   at rather than repeating the heading. */
+.views .view { margin: clamp(40px, 6vw, 72px) 0 0; }
+.view img {
+  display: block; width: 100%; height: auto;
+  border-radius: 13px;
+  border: 1px solid var(--line-2);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+  background: var(--bg);
 }
-@media (prefers-reduced-motion: reduce) {
-  .stage-outer { height: auto; }
-  .stage { position: static; height: auto; padding: 72px 0 96px; }
+.view figcaption {
+  margin: 16px auto 0; max-width: 62ch;
+  color: var(--dim); font-size: 16px; line-height: 1.55;
 }
-.scene { position: relative; width: min(420px, 78vw); aspect-ratio: 1; }
-.footprint {
-  position: absolute; inset: 14%;
-  border: 7px dashed var(--dim-2); border-radius: 17%;
-  opacity: 0;
-}
-.speck { position: absolute; border-radius: 50%; background: var(--dim-2); opacity: 0; }
-.speck.s1 { width: 20px; height: 20px; left: 30%; top: 62%; }
-.speck.s2 { width: 14px; height: 14px; left: 45%; top: 72%; }
-.speck.s3 { width: 11px; height: 11px; left: 25%; top: 76%; }
-.tile {
-  position: absolute; inset: 14%;
-  border-radius: 17%;
-  background: var(--accent);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, .5);
-}
-.tile::after {
-  content: ""; position: absolute; left: 16%; top: 14%;
-  width: 44%; height: 7%; border-radius: 99px;
-  background: rgba(255, 255, 255, .45);
-}
-.caption {
-  position: absolute; left: 50%; bottom: clamp(32px, 7vh, 72px);
-  transform: translateX(-50%);
-  width: min(560px, 86vw); text-align: center;
-  font-size: clamp(18px, 2.4vw, 25px); font-weight: 650;
-  line-height: 1.3; letter-spacing: -.015em;
-}
-.caption span { display: block; position: absolute; inset: 0; opacity: 0; }
-.caption span:first-child { opacity: 1; position: relative; }
+.view figcaption b { color: var(--fg); font-weight: 700; }
 
 /* ---------------------------------------------------------------- cards */
 .grid { display: grid; gap: 16px; margin-top: 40px; }
@@ -216,6 +187,9 @@ h2 {
   border-radius: var(--r-card); padding: 22px;
 }
 .card h3 { margin: 0 0 8px; font-size: 17.5px; font-weight: 700; }
+/* A card that has no number to lead with leads with its heading. */
+.card > h3:first-child { font-size: 20.5px; letter-spacing: -.015em;
+                         margin-bottom: 10px; }
 .card p { margin: 0; color: var(--dim); font-size: 15.5px; }
 .card .big {
   display: block; font-size: 34px; font-weight: 800; letter-spacing: -.03em;

@@ -74,36 +74,31 @@
         <h3>kaynak, tek pencere</h3><p>Sistem için apt, dnf ve pacman; taşınabilirler için Flatpak, Snap ve AppImage; başka hiçbir şeyin takip etmediği dil yöneticileri için pip, pipx, npm ve cargo.</p></div>
       <div class="card"><span class="big">GB</span>
         <h3>tahmin değil, ölçüm</h3><p>Her satır diskte gerçekten kapladığı alanı taşır; böylece artık kullanmadığınız en büyük şey ilk gördüğünüz şey olur.</p></div>
-      <div class="card"><span class="big">·</span>
-        <h3>kendi logosuyla</h3><p>Logolar sistemde zaten bulunan masaüstü girdilerinden gelir; belirsiz bir eşleşme tahmin edilmek yerine atılır — yanlış bir logo, yanlış şeyi kaldırmaya davet eder.</p></div>
+      <div class="card"><h3>Her satır kendi logosuyla</h3>
+        <p>Logolar sistemde zaten bulunan masaüstü girdilerinden gelir; belirsiz bir eşleşme tahmin edilmek yerine atılır — yanlış bir logo, yanlış şeyi kaldırmaya davet eder.</p></div>
     </div>
   </div>
 </section>
 
-<div class="stage-outer">
-  <div class="stage">
-    <div class="scene">
-      <div class="footprint"></div>
-      <span class="speck s1"></span>
-      <span class="speck s2"></span>
-      <span class="speck s3"></span>
-      <div class="tile"></div>
-    </div>
-    <p class="caption">
-      <span>Bir uygulamayı kaldırırsınız…</span>
-      <span>…ama geride bıraktığı şey budur.</span>
-      <span>AppSweep onu bulur ve temizler.</span>
-    </p>
-  </div>
-</div>
-
-<section>
+<section class="views">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow">Kalıntılar</p>
+      <p class="eyebrow">Üç ekran</p>
       <h2>Program gider. Ayarları, önbellekleri ve verisi kalır.</h2>
       <p class="lede">Hiçbir paket yöneticisi bunları temizlemez; yıllardır kullanılan bir makinenin, çoktan kaldırılmış yazılımlara ait klasörler taşımasının sebebi budur. AppSweep, hiçbir kurulu uygulamanın sahiplenmediği klasörleri listeler, her biri için ne kadar emin olduğunu söyler ve onayladıklarınızı çöp kutusuna gönderir.</p>
     </div>
+    <figure class="view reveal">
+      <img src="screenshot-leftovers-tr.png" alt="Kalıntılar ekranı: sahipsiz dizinler, güven etiketleri ve boyutlarıyla" loading="lazy">
+      <figcaption><b>Kalıntılar.</b> Ev klasörünüzün, /etc ve /var/lib altındaki, hiçbir kurulu uygulamanın sahiplenmediği dizinler. Her biri kesin, olası ya da tahmin diye işaretlenir; tahmin olanlar sizin yerinize asla seçilmez.</figcaption>
+    </figure>
+    <figure class="view reveal">
+      <img src="screenshot-reclaim-tr.png" alt="Geri Kazan ekranı: geri kazanılabilir 11 GB" loading="lazy">
+      <figcaption><b>Geri Kazan.</b> İndirme önbellekleri, artık bağımlılıklar ve eskimiş snap sürümleri — hiçbiri sizin bilerek kurduğunuz bir şey değil, hepsi tahmin değil ölçüm.</figcaption>
+    </figure>
+    <figure class="view reveal">
+      <img src="screenshot-uninstall-tr.png" alt="Kaldırma onayı: beş uygulama ve kaldırma seçenekleri" loading="lazy">
+      <figcaption><b>Bir şey olmadan önce.</b> Birkaçını birden kaldırın; onay ekranı her birinin ne olduğunu, kaldırmanın ne kadar kapsamlı olacağını ve çalışacak komutların tam metnini gösterir.</figcaption>
+    </figure>
   </div>
 </section>
 

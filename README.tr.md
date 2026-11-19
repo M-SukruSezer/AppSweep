@@ -68,7 +68,7 @@ hatta AppSweep'ten önce kaldırdığınız yazılımların artıkları.
 **Geri Kazan** — geri alabileceğiniz alan: indirme önbellekleri, artık
 bağımlılıklar, eskimiş snap sürümleri. Her biri ölçülmüş boyutuyla.
 
-![Flatpak uygulamaları](docs/screenshot-flatpak.png)
+![Kalıntılar ekranı](docs/screenshot-leftovers-tr.png)
 
 ## Güvenlik modeli
 

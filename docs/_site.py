@@ -54,14 +54,30 @@ EN = {
     "c2_big": "GB", "c2_h": "measured, not estimated",
     "c2_p": "Every row carries the space it really takes on disk, so the "
             "largest thing you no longer use is the first thing you see.",
-    "c3_big": "·", "c3_h": "with its own icon",
+    "c3_h": "Every row with its own icon",
     "c3_p": "Icons come from the desktop entries already on the system, and "
             "an ambiguous match is dropped rather than guessed — a wrong "
             "logo invites you to remove the wrong thing.",
-    "cap1": "You remove an application…",
-    "cap2": "…but this is what it leaves behind.",
-    "cap3": "AppSweep finds it, and clears it.",
-    "s2_eyebrow": "Leftovers",
+    "views": [
+        ("screenshot-leftovers-en.png", "Leftovers.",
+         "Directories under your home folder, /etc and /var/lib that no "
+         "installed application accounts for. Each one is marked certain, "
+         "likely or a guess, and a guess is never ticked for you.",
+         "The Leftovers view listing orphaned directories with confidence "
+         "labels and sizes"),
+        ("screenshot-reclaim-en.png", "Reclaim.",
+         "Download caches, orphaned dependencies and superseded snap "
+         "revisions — none of it something you chose to install, all of it "
+         "measured rather than estimated.",
+         "The Reclaim view showing 11 GB of reclaimable space"),
+        ("screenshot-uninstall-en.png", "Before anything happens.",
+         "Remove several at once and the confirmation shows what each one "
+         "is, how thorough the removal will be, and the exact commands that "
+         "will run.",
+         "The uninstall confirmation listing five applications and the "
+         "removal options"),
+    ],
+    "s2_eyebrow": "The three views",
     "s2_h2": "The program goes. Its settings, caches and data stay.",
     "s2_lede": "No package manager cleans these up, which is why a machine "
                "that has been in use for years carries folders belonging to "
@@ -133,14 +149,30 @@ TR = {
     "c2_big": "GB", "c2_h": "tahmin değil, ölçüm",
     "c2_p": "Her satır diskte gerçekten kapladığı alanı taşır; böylece artık "
             "kullanmadığınız en büyük şey ilk gördüğünüz şey olur.",
-    "c3_big": "·", "c3_h": "kendi logosuyla",
+    "c3_h": "Her satır kendi logosuyla",
     "c3_p": "Logolar sistemde zaten bulunan masaüstü girdilerinden gelir; "
             "belirsiz bir eşleşme tahmin edilmek yerine atılır — yanlış bir "
             "logo, yanlış şeyi kaldırmaya davet eder.",
-    "cap1": "Bir uygulamayı kaldırırsınız…",
-    "cap2": "…ama geride bıraktığı şey budur.",
-    "cap3": "AppSweep onu bulur ve temizler.",
-    "s2_eyebrow": "Kalıntılar",
+    "views": [
+        ("screenshot-leftovers-tr.png", "Kalıntılar.",
+         "Ev klasörünüzün, /etc ve /var/lib altındaki, hiçbir kurulu "
+         "uygulamanın sahiplenmediği dizinler. Her biri kesin, olası ya da "
+         "tahmin diye işaretlenir; tahmin olanlar sizin yerinize asla "
+         "seçilmez.",
+         "Kalıntılar ekranı: sahipsiz dizinler, güven etiketleri ve "
+         "boyutlarıyla"),
+        ("screenshot-reclaim-tr.png", "Geri Kazan.",
+         "İndirme önbellekleri, artık bağımlılıklar ve eskimiş snap "
+         "sürümleri — hiçbiri sizin bilerek kurduğunuz bir şey değil, hepsi "
+         "tahmin değil ölçüm.",
+         "Geri Kazan ekranı: geri kazanılabilir 11 GB"),
+        ("screenshot-uninstall-tr.png", "Bir şey olmadan önce.",
+         "Birkaçını birden kaldırın; onay ekranı her birinin ne olduğunu, "
+         "kaldırmanın ne kadar kapsamlı olacağını ve çalışacak komutların "
+         "tam metnini gösterir.",
+         "Kaldırma onayı: beş uygulama ve kaldırma seçenekleri"),
+    ],
+    "s2_eyebrow": "Üç ekran",
     "s2_h2": "Program gider. Ayarları, önbellekleri ve verisi kalır.",
     "s2_lede": "Hiçbir paket yöneticisi bunları temizlemez; yıllardır "
                "kullanılan bir makinenin, çoktan kaldırılmış yazılımlara ait "
@@ -201,6 +233,13 @@ def render(t):
           <div><b>{esc(title)}</b><p>{esc(body)}</p></div>
         </li>"""
         for title, body in t["safety"]
+    )
+    views = "\n".join(
+        f"""    <figure class="view reveal">
+      <img src="{shot}" alt="{esc(alt)}" loading="lazy">
+      <figcaption><b>{esc(title)}</b> {esc(body)}</figcaption>
+    </figure>"""
+        for shot, title, body, alt in t["views"]
     )
     downloads = "\n".join(
         f"""        <div class="dl-card">
@@ -283,36 +322,20 @@ def render(t):
         <h3>{esc(t['c1_h'])}</h3><p>{esc(t['c1_p'])}</p></div>
       <div class="card"><span class="big">{esc(t['c2_big'])}</span>
         <h3>{esc(t['c2_h'])}</h3><p>{esc(t['c2_p'])}</p></div>
-      <div class="card"><span class="big">{esc(t['c3_big'])}</span>
-        <h3>{esc(t['c3_h'])}</h3><p>{esc(t['c3_p'])}</p></div>
+      <div class="card"><h3>{esc(t['c3_h'])}</h3>
+        <p>{esc(t['c3_p'])}</p></div>
     </div>
   </div>
 </section>
 
-<div class="stage-outer">
-  <div class="stage">
-    <div class="scene">
-      <div class="footprint"></div>
-      <span class="speck s1"></span>
-      <span class="speck s2"></span>
-      <span class="speck s3"></span>
-      <div class="tile"></div>
-    </div>
-    <p class="caption">
-      <span>{esc(t['cap1'])}</span>
-      <span>{esc(t['cap2'])}</span>
-      <span>{esc(t['cap3'])}</span>
-    </p>
-  </div>
-</div>
-
-<section>
+<section class="views">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">{esc(t['s2_eyebrow'])}</p>
       <h2>{esc(t['s2_h2'])}</h2>
       <p class="lede">{esc(t['s2_lede'])}</p>
     </div>
+{views}
   </div>
 </section>
 
