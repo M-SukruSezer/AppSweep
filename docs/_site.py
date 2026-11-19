@@ -14,6 +14,13 @@ import re
 
 HERE = pathlib.Path(__file__).parent
 REPO = "https://github.com/M-SukruSezer/AppSweep"
+
+#: GitHub Pages serves docs/ as the site root, so it cannot reach the icon
+#: where the application keeps it. Copy rather than duplicate by hand, so
+#: the page can never show a different icon from the one that gets
+#: installed.
+ICON_SOURCE = (HERE.parent / "data" / "icons" / "hicolor" / "scalable"
+               / "apps" / "io.github.appsweep.AppSweep.svg")
 VERSION = re.search(
     r'__version__ = "([^"]+)"',
     (HERE.parent / "appsweep" / "__init__.py").read_text(),
@@ -263,7 +270,9 @@ def render(t):
 <meta property="og:description" content="{esc(t['meta'])}">
 <meta property="og:image" content="{REPO}/raw/main/docs/{t['shot']}">
 <meta property="og:type" content="website">
-<link rel="icon" href="icon.png">
+<link rel="icon" type="image/svg+xml" href="appsweep.svg">
+<link rel="alternate icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 <link rel="alternate" hreflang="{'tr' if t['lang'] == 'en' else 'en'}"
       href="{t['other']}">
 <link rel="stylesheet" href="assets/site.css">
@@ -272,7 +281,7 @@ def render(t):
 
 <header class="hb">
   <div class="wrap hb-in">
-    <img src="icon.png" alt="">
+    <img src="appsweep.svg" alt="" width="30" height="30">
     <span class="name">AppSweep</span>
     <span class="ver num">{VERSION}</span>
     <nav>
@@ -383,6 +392,10 @@ def render(t):
 </html>
 """
 
+
+(HERE / "appsweep.svg").write_text(
+    ICON_SOURCE.read_text(encoding="utf-8"), encoding="utf-8")
+print("docs/appsweep.svg")
 
 for data, name in ((EN, "index.html"), (TR, "tr.html")):
     (HERE / name).write_text(render(data), encoding="utf-8")
