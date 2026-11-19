@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  AppSweep — application icon.
-
-  One idea, which is the reason this app exists: the application has been
-  lifted away, and the shape it occupied is still there. The dashed outline
-  is the footprint — the settings, caches and data a package manager leaves
-  behind — and the specks inside it are what is actually left lying in it.
-
-  Earlier drafts drew a brush. A brush says "cleaning utility"; it does not
-  say "this is about software". A tile plus the hole it left says both, and
-  it survives being drawn at 32 pixels, which a brush did not.
-
-  Adwaita template: 128x128, GNOME palette, flat shapes with an offset
-  darker layer for thickness. Ink coverage is about 53% against the ~63%
-  of org.gnome.baobab and Settings; the gap is the hollow footprint, and
-  filling it would cost the icon its meaning.
--->
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"
      viewBox="0 0 128 128">
   <title>AppSweep</title>
+  <!--
+    Keep the <svg> element within the first bytes of the file. gdk-pixbuf
+    identifies an image by sniffing its opening bytes, and a long comment
+    above the element pushes <svg> out of that window: the loader then
+    reports "couldn't recognize the image file format" and the desktop
+    shows no icon at all, even though GTK's own icon theme resolves the
+    file perfectly well. That is why this explanation sits here instead.
+
+    One idea, which is the reason this app exists: the application has
+    been lifted away, and the shape it occupied is still there. The dashed
+    outline is the footprint — the settings, caches and data a package
+    manager leaves behind — and the specks inside it are what is actually
+    left lying in it.
+
+    Adwaita template: 128x128, GNOME palette, flat shapes with an offset
+    darker layer for thickness.
+  -->
 
   <g transform="translate(64 64) scale(0.94) translate(-64 -64)">
     <!-- what the application left behind -->

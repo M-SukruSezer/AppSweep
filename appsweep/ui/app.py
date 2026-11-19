@@ -13,7 +13,7 @@ gi.require_version("Adw", "1")
 
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk  # noqa: E402
 
-from .. import APP_ID, __version__, i18n
+from .. import APP_ID, __version__, i18n, selfremove
 from ..i18n import _
 from . import appicon
 from .preferences import PreferencesDialog
@@ -21,6 +21,10 @@ from .style import CSS
 from .window import MainWindow
 
 PROJECT_URL = "https://github.com/M-SukruSezer/AppSweep"
+#: Not a real URI. The About dialog only offers links, so the uninstall
+#: entry is a link whose activation is intercepted before anything tries
+#: to open it.
+UNINSTALL_URI = "appsweep:uninstall"
 ISSUE_URL = "https://github.com/M-SukruSezer/AppSweep/issues"
 
 
@@ -111,6 +115,8 @@ class AppSweepApp(Adw.Application):
             translator_credits=_("translator-credits"),
         )
         about.add_link(_("Source code"), PROJECT_URL)
+        about.add_link(_("Uninstall AppSweep…"), UNINSTALL_URI)
+        about.connect("activate-link", self._on_about_link)
         about.add_acknowledgement_section(
             _("Built on"),
             [
@@ -139,6 +145,70 @@ class AppSweepApp(Adw.Application):
 
     def _on_about(self, *_args) -> None:
         self.build_about().present(self.window)
+
+    # --------------------------------------------------------- uninstall
+    def _on_about_link(self, dialog: Adw.AboutDialog, uri: str) -> bool:
+        if uri != UNINSTALL_URI:
+            return False            # an ordinary link; let it open
+        dialog.close()
+        self.ask_to_uninstall()
+        return True
+
+    def ask_to_uninstall(self) -> None:
+        """Show what removing this copy would run, then run it."""
+        install = selfremove.detect()
+
+        if not install.removable:
+            dlg = Adw.AlertDialog(
+                heading=_("Nothing to uninstall"),
+                body=_("This copy is running straight from a source folder, "
+                       "so nothing has been installed on the system.\n\n{path}"
+                       ).format(path=install.detail),
+            )
+            dlg.add_response("ok", _("Close"))
+            dlg.present(self.window)
+            return
+
+        argv = selfremove.terminal_argv(selfremove.session_script(install))
+        body = (
+            install.label + "\n\n"
+            + _("This runs in a terminal window, where you can read it and "
+                "confirm it:") + "\n\n"
+            + install.command + "\n\n"
+            + _("AppSweep stays open; close it when the terminal is done.")
+        )
+        if argv is None:
+            body = (
+                install.label + "\n\n"
+                + _("No terminal application was found, so run this "
+                    "yourself:") + "\n\n"
+                + install.command
+            )
+            dlg = Adw.AlertDialog(heading=_("Uninstall AppSweep"), body=body)
+            dlg.add_response("ok", _("Close"))
+            dlg.present(self.window)
+            return
+
+        dlg = Adw.AlertDialog(heading=_("Uninstall AppSweep?"), body=body)
+        dlg.add_response("cancel", _("Cancel"))
+        dlg.add_response("go", _("Open Terminal"))
+        dlg.set_response_appearance("go", Adw.ResponseAppearance.DESTRUCTIVE)
+        dlg.set_default_response("cancel")
+        dlg.set_close_response("cancel")
+        dlg.connect("response", lambda _d, r: (
+            self._launch_uninstall(argv) if r == "go" else None))
+        dlg.present(self.window)
+
+    def _launch_uninstall(self, argv: list[str]) -> None:
+        try:
+            Gio.Subprocess.new(argv, Gio.SubprocessFlags.NONE)
+        except GLib.Error as exc:
+            dlg = Adw.AlertDialog(
+                heading=_("Could not open a terminal"),
+                body=str(exc),
+            )
+            dlg.add_response("ok", _("Close"))
+            dlg.present(self.window)
 
     def _on_shortcuts(self, *_args) -> None:
         dlg = Adw.AlertDialog(

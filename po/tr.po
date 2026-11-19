@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AppSweep 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/M-SukruSezer/AppSweep/issues\n"
-"POT-Creation-Date: 2026-11-19 07:24+0300\n"
+"POT-Creation-Date: 2026-11-19 07:58+0300\n"
 "PO-Revision-Date: 2026-11-18 21:00\n"
 "Last-Translator: AppSweep\n"
 "Language-Team: Turkish\n"
@@ -561,7 +561,35 @@ msgstr "AppSweep'in bu sistemde neleri gördüğü"
 msgid "Interrupted."
 msgstr "Yarıda kesildi."
 
-#: appsweep/ui/app.py:94
+#: appsweep/selfremove.py:83
+msgid "Installed as a Debian package ({pkg})"
+msgstr "Debian paketi olarak kurulmuş ({pkg})"
+
+#: appsweep/selfremove.py:92
+msgid "Installed as an RPM package ({pkg})"
+msgstr "RPM paketi olarak kurulmuş ({pkg})"
+
+#: appsweep/selfremove.py:99
+msgid "Installed with pacman ({pkg})"
+msgstr "pacman ile kurulmuş ({pkg})"
+
+#: appsweep/selfremove.py:112
+msgid "Installed for this user only, under {prefix}"
+msgstr "Yalnızca bu kullanıcı için kurulmuş, {prefix} altında"
+
+#: appsweep/selfremove.py:121
+msgid "Running from a source folder, not installed"
+msgstr "Kaynak klasöründen çalışıyor, kurulu değil"
+
+#: appsweep/selfremove.py:192
+msgid "Removing AppSweep"
+msgstr "AppSweep kaldırılıyor"
+
+#: appsweep/selfremove.py:193
+msgid "Finished. Press Enter to close this window."
+msgstr "Bitti. Bu pencereyi kapatmak için Enter'a basın."
+
+#: appsweep/ui/app.py:98
 msgid ""
 "One uninstaller for every way Linux installs software.\n"
 "\n"
@@ -577,39 +605,43 @@ msgstr ""
 "önbellekleri ve verileri bulur."
 
 #. TRANSLATORS: put your name here, one per line.
-#: appsweep/ui/app.py:111
+#: appsweep/ui/app.py:115
 msgid "translator-credits"
 msgstr "Muhammed Şükrü SEZER"
 
-#: appsweep/ui/app.py:113
+#: appsweep/ui/app.py:117
 msgid "Source code"
 msgstr "Kaynak kodu"
 
-#: appsweep/ui/app.py:115
+#: appsweep/ui/app.py:118
+msgid "Uninstall AppSweep…"
+msgstr "AppSweep'i Kaldır…"
+
+#: appsweep/ui/app.py:121
 msgid "Built on"
 msgstr "Üzerine kurulduğu projeler"
 
-#: appsweep/ui/app.py:123
+#: appsweep/ui/app.py:129
 msgid "Safety rules"
 msgstr "Güvenlik kuralları"
 
-#: appsweep/ui/app.py:125
+#: appsweep/ui/app.py:131
 msgid "Protected paths are refused outright"
 msgstr "Korunan yollar koşulsuz reddedilir"
 
-#: appsweep/ui/app.py:126
+#: appsweep/ui/app.py:132
 msgid "Leftovers go to the trash, not /dev/null"
 msgstr "Kalıntılar /dev/null'a değil, çöp kutusuna gider"
 
-#: appsweep/ui/app.py:127
+#: appsweep/ui/app.py:133
 msgid "Every command is shown before it runs"
 msgstr "Her komut çalışmadan önce gösterilir"
 
-#: appsweep/ui/app.py:131
+#: appsweep/ui/app.py:137
 msgid "Icon"
 msgstr "Simge"
 
-#: appsweep/ui/app.py:132
+#: appsweep/ui/app.py:138
 msgid ""
 "The application icon is part of AppSweep and is released under the same "
 "licence. It follows the GNOME icon template and uses the GNOME palette."
@@ -617,29 +649,78 @@ msgstr ""
 "Uygulama simgesi AppSweep'in parçasıdır ve aynı lisansla dağıtılır. GNOME "
 "simge şablonunu izler ve GNOME paletini kullanır."
 
-#: appsweep/ui/app.py:145
+#: appsweep/ui/app.py:163
+msgid "Nothing to uninstall"
+msgstr "Kaldırılacak bir şey yok"
+
+#: appsweep/ui/app.py:164
+msgid ""
+"This copy is running straight from a source folder, so nothing has been installed on the system.\n"
+"\n"
+"{path}"
+msgstr ""
+"Bu kopya doğrudan bir kaynak klasöründen çalışıyor, yani sisteme kurulmuş bir şey yok.\n"
+"\n"
+"{path}"
+
+#: appsweep/ui/app.py:168 appsweep/ui/app.py:188 appsweep/ui/app.py:210
+#: appsweep/ui/app.py:223 appsweep/ui/removal.py:182
+msgid "Close"
+msgstr "Kapat"
+
+#: appsweep/ui/app.py:175
+msgid "This runs in a terminal window, where you can read it and confirm it:"
+msgstr "Şu komut bir terminal penceresinde çalışacak; orada okuyup onaylayabilirsiniz:"
+
+#: appsweep/ui/app.py:178
+msgid "AppSweep stays open; close it when the terminal is done."
+msgstr "AppSweep açık kalır; terminal işini bitirince siz kapatın."
+
+#: appsweep/ui/app.py:183
+msgid "No terminal application was found, so run this yourself:"
+msgstr "Terminal uygulaması bulunamadı, bu komutu kendiniz çalıştırın:"
+
+#: appsweep/ui/app.py:187
+msgid "Uninstall AppSweep"
+msgstr "AppSweep'i Kaldır"
+
+#: appsweep/ui/app.py:192
+msgid "Uninstall AppSweep?"
+msgstr "AppSweep kaldırılsın mı?"
+
+#: appsweep/ui/app.py:193 appsweep/ui/page_cleanup.py:176
+#: appsweep/ui/page_leftovers.py:255 appsweep/ui/removal.py:67
+#: appsweep/ui/removal.py:377
+msgid "Cancel"
+msgstr "İptal"
+
+#: appsweep/ui/app.py:194
+msgid "Open Terminal"
+msgstr "Terminali Aç"
+
+#: appsweep/ui/app.py:207
+msgid "Could not open a terminal"
+msgstr "Terminal açılamadı"
+
+#: appsweep/ui/app.py:215
 msgid "Keyboard shortcuts"
 msgstr "Klavye kısayolları"
 
-#: appsweep/ui/app.py:147
+#: appsweep/ui/app.py:217
 msgid "Ctrl+R or F5\tRescan the system"
 msgstr "Ctrl+R veya F5\tSistemi yeniden tara"
 
-#: appsweep/ui/app.py:148
+#: appsweep/ui/app.py:218
 msgid "Ctrl+F\t\tSearch installed software"
 msgstr "Ctrl+F\t\tKurulu yazılımlarda ara"
 
-#: appsweep/ui/app.py:149
+#: appsweep/ui/app.py:219
 msgid "Ctrl+,\t\tPreferences"
 msgstr "Ctrl+,\t\tTercihler"
 
-#: appsweep/ui/app.py:150
+#: appsweep/ui/app.py:220
 msgid "Ctrl+Q\t\tQuit"
 msgstr "Ctrl+Q\t\tÇıkış"
-
-#: appsweep/ui/app.py:153 appsweep/ui/removal.py:182
-msgid "Close"
-msgstr "Kapat"
 
 #: appsweep/ui/page_apps.py:27
 msgid "All sources"
@@ -808,11 +889,6 @@ msgstr "Bu yaklaşık {size} yer açar."
 #: appsweep/ui/page_cleanup.py:174
 msgid "It runs:"
 msgstr "Şunu çalıştırır:"
-
-#: appsweep/ui/page_cleanup.py:176 appsweep/ui/page_leftovers.py:255
-#: appsweep/ui/removal.py:67 appsweep/ui/removal.py:377
-msgid "Cancel"
-msgstr "İptal"
 
 #: appsweep/ui/page_cleanup.py:188
 msgid "Clearing…"

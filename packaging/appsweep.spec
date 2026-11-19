@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:           %{appname}
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        One uninstaller for every way Linux installs software
 Summary(tr):    Linux'ta yazılım kurmanın her yolu için tek kaldırma aracı
@@ -61,5 +61,11 @@ python3 -m compileall -q appsweep
 %{_datadir}/doc/appsweep/
 
 %changelog
-* Wed Nov 19 2026 Muhammed Şükrü SEZER <M-SukruSezer@users.noreply.github.com> - 0.1.0-1
+* Thu Nov 19 2026 Muhammed Şükrü SEZER <M-SukruSezer@users.noreply.github.com> - 0.1.1-1
+- Fix the application icon not appearing in the desktop: a comment above
+  the <svg> element kept gdk-pixbuf from recognising the file.
+- Add "Uninstall AppSweep" to the About dialog, which detects how this
+  copy was installed and runs the matching removal in a terminal.
+
+* Wed Nov 18 2026 Muhammed Şükrü SEZER <M-SukruSezer@users.noreply.github.com> - 0.1.0-1
 - First release.

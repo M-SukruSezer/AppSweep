@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AppSweep 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/M-SukruSezer/AppSweep/issues\n"
-"POT-Creation-Date: 2026-11-19 07:24+0300\n"
+"POT-Creation-Date: 2026-11-19 07:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -533,7 +533,39 @@ msgstr ""
 msgid "Interrupted."
 msgstr ""
 
-#: appsweep/ui/app.py:94
+#: appsweep/selfremove.py:83
+#, python-brace-format
+msgid "Installed as a Debian package ({pkg})"
+msgstr ""
+
+#: appsweep/selfremove.py:92
+#, python-brace-format
+msgid "Installed as an RPM package ({pkg})"
+msgstr ""
+
+#: appsweep/selfremove.py:99
+#, python-brace-format
+msgid "Installed with pacman ({pkg})"
+msgstr ""
+
+#: appsweep/selfremove.py:112
+#, python-brace-format
+msgid "Installed for this user only, under {prefix}"
+msgstr ""
+
+#: appsweep/selfremove.py:121
+msgid "Running from a source folder, not installed"
+msgstr ""
+
+#: appsweep/selfremove.py:192
+msgid "Removing AppSweep"
+msgstr ""
+
+#: appsweep/selfremove.py:193
+msgid "Finished. Press Enter to close this window."
+msgstr ""
+
+#: appsweep/ui/app.py:98
 msgid ""
 "One uninstaller for every way Linux installs software.\n"
 "\n"
@@ -543,66 +575,118 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: put your name here, one per line.
-#: appsweep/ui/app.py:111
+#: appsweep/ui/app.py:115
 msgid "translator-credits"
 msgstr ""
 
-#: appsweep/ui/app.py:113
+#: appsweep/ui/app.py:117
 msgid "Source code"
 msgstr ""
 
-#: appsweep/ui/app.py:115
+#: appsweep/ui/app.py:118
+msgid "Uninstall AppSweep…"
+msgstr ""
+
+#: appsweep/ui/app.py:121
 msgid "Built on"
 msgstr ""
 
-#: appsweep/ui/app.py:123
+#: appsweep/ui/app.py:129
 msgid "Safety rules"
 msgstr ""
 
-#: appsweep/ui/app.py:125
+#: appsweep/ui/app.py:131
 msgid "Protected paths are refused outright"
 msgstr ""
 
-#: appsweep/ui/app.py:126
+#: appsweep/ui/app.py:132
 msgid "Leftovers go to the trash, not /dev/null"
 msgstr ""
 
-#: appsweep/ui/app.py:127
+#: appsweep/ui/app.py:133
 msgid "Every command is shown before it runs"
 msgstr ""
 
-#: appsweep/ui/app.py:131
+#: appsweep/ui/app.py:137
 msgid "Icon"
 msgstr ""
 
-#: appsweep/ui/app.py:132
+#: appsweep/ui/app.py:138
 msgid ""
 "The application icon is part of AppSweep and is released under the same "
 "licence. It follows the GNOME icon template and uses the GNOME palette."
 msgstr ""
 
-#: appsweep/ui/app.py:145
+#: appsweep/ui/app.py:163
+msgid "Nothing to uninstall"
+msgstr ""
+
+#: appsweep/ui/app.py:164
+#, python-brace-format
+msgid ""
+"This copy is running straight from a source folder, so nothing has been "
+"installed on the system.\n"
+"\n"
+"{path}"
+msgstr ""
+
+#: appsweep/ui/app.py:168 appsweep/ui/app.py:188 appsweep/ui/app.py:210
+#: appsweep/ui/app.py:223 appsweep/ui/removal.py:182
+msgid "Close"
+msgstr ""
+
+#: appsweep/ui/app.py:175
+msgid "This runs in a terminal window, where you can read it and confirm it:"
+msgstr ""
+
+#: appsweep/ui/app.py:178
+msgid "AppSweep stays open; close it when the terminal is done."
+msgstr ""
+
+#: appsweep/ui/app.py:183
+msgid "No terminal application was found, so run this yourself:"
+msgstr ""
+
+#: appsweep/ui/app.py:187
+msgid "Uninstall AppSweep"
+msgstr ""
+
+#: appsweep/ui/app.py:192
+msgid "Uninstall AppSweep?"
+msgstr ""
+
+#: appsweep/ui/app.py:193 appsweep/ui/page_cleanup.py:176
+#: appsweep/ui/page_leftovers.py:255 appsweep/ui/removal.py:67
+#: appsweep/ui/removal.py:377
+msgid "Cancel"
+msgstr ""
+
+#: appsweep/ui/app.py:194
+msgid "Open Terminal"
+msgstr ""
+
+#: appsweep/ui/app.py:207
+msgid "Could not open a terminal"
+msgstr ""
+
+#: appsweep/ui/app.py:215
 msgid "Keyboard shortcuts"
 msgstr ""
 
-#: appsweep/ui/app.py:147
+#: appsweep/ui/app.py:217
 msgid "Ctrl+R or F5\tRescan the system"
 msgstr ""
 
-#: appsweep/ui/app.py:148
+#: appsweep/ui/app.py:218
 msgid "Ctrl+F\t\tSearch installed software"
 msgstr ""
 
-#: appsweep/ui/app.py:149
+#: appsweep/ui/app.py:219
 msgid "Ctrl+,\t\tPreferences"
 msgstr ""
 
-#: appsweep/ui/app.py:150
+#: appsweep/ui/app.py:220
 msgid "Ctrl+Q\t\tQuit"
-msgstr ""
-
-#: appsweep/ui/app.py:153 appsweep/ui/removal.py:182
-msgid "Close"
 msgstr ""
 
 #: appsweep/ui/page_apps.py:27
@@ -767,11 +851,6 @@ msgstr ""
 
 #: appsweep/ui/page_cleanup.py:174
 msgid "It runs:"
-msgstr ""
-
-#: appsweep/ui/page_cleanup.py:176 appsweep/ui/page_leftovers.py:255
-#: appsweep/ui/removal.py:67 appsweep/ui/removal.py:377
-msgid "Cancel"
 msgstr ""
 
 #: appsweep/ui/page_cleanup.py:188

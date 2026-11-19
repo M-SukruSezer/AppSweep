@@ -18,7 +18,8 @@ from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from appsweep import icons, leftovers, safety, util       # noqa: E402
+from appsweep import (icons, leftovers, safety,          # noqa: E402
+                      selfremove, util)
 from appsweep.backends import cargo, npm, pip, pipx       # noqa: E402
 from appsweep.models import App, Plan, Residue, Source    # noqa: E402
 
@@ -682,9 +683,158 @@ class TestIconAssets(unittest.TestCase):
         self.assertIn("currentColor", sym)
         self.assertNotIn("#", sym.split("-->")[-1])
 
+    def test_svg_element_is_near_the_start_of_the_file(self):
+        """gdk-pixbuf identifies an image by sniffing its opening bytes.
+
+        A long comment above the <svg> element pushes it past that window,
+        and the loader then refuses the file outright — GTK's icon theme
+        still resolves it, so the icon looks fine in the application while
+        the desktop shows nothing at all. Keep the element at the top.
+        """
+        for rel in ("data/icons/hicolor/scalable/apps/"
+                    "io.github.appsweep.AppSweep.svg",
+                    "data/icons/hicolor/symbolic/apps/"
+                    "io.github.appsweep.AppSweep-symbolic.svg"):
+            raw = (self.ROOT / rel).read_bytes()
+            self.assertNotEqual(raw.find(b"<svg"), -1, rel)
+            self.assertLess(raw.find(b"<svg"), 200,
+                            f"{rel}: <svg> is too far into the file for "
+                            f"gdk-pixbuf to recognise it")
+
+    def test_icons_load_through_gdk_pixbuf(self):
+        try:
+            import gi
+            gi.require_version("GdkPixbuf", "2.0")
+            from gi.repository import GdkPixbuf
+        except (ImportError, ValueError):
+            self.skipTest("GdkPixbuf not available")
+        for rel in ("data/icons/hicolor/scalable/apps/"
+                    "io.github.appsweep.AppSweep.svg",
+                    "data/icons/hicolor/symbolic/apps/"
+                    "io.github.appsweep.AppSweep-symbolic.svg"):
+            pb = GdkPixbuf.Pixbuf.new_from_file_at_size(
+                str(self.ROOT / rel), 64, 64)
+            self.assertEqual(pb.get_width(), 64, rel)
+
     def test_desktop_entry_points_at_the_icon(self):
         text = (self.ROOT / "data/io.github.appsweep.AppSweep.desktop").read_text()
         self.assertIn("Icon=io.github.appsweep.AppSweep", text)
+
+
+# -------------------------------------------------------------- selfremove
+class TestInstallationDetection(unittest.TestCase):
+    """AppSweep has to leave the way it arrived.
+
+    Removing a packaged copy with rm would leave the package database
+    describing files that are no longer there, so the method matters as
+    much as the deletion.
+    """
+
+    def _owner(self, manager_output, which):
+        """Pretend exactly one package manager answers."""
+        def fake_have(cmd):
+            return cmd == which
+
+        def fake_run(argv, **kw):
+            if argv[0] == which:
+                return _result(manager_output)
+            return _result("", code=1)
+
+        with mock.patch.object(selfremove, "_owner_package",
+                               wraps=selfremove._owner_package):
+            with mock.patch("appsweep.util.have", fake_have), \
+                 mock.patch("appsweep.util.run", fake_run):
+                return selfremove._owner_package(Path("/usr/share/appsweep"
+                                                      "/appsweep/__init__.py"))
+
+    def test_dpkg_answer_is_parsed(self):
+        got = self._owner("appsweep: /usr/share/appsweep/appsweep/__init__.py",
+                          "dpkg-query")
+        self.assertEqual(got, ("deb", "appsweep"))
+
+    def test_rpm_answer_is_parsed(self):
+        got = self._owner("appsweep-0.1.1-1.noarch", "rpm")
+        self.assertEqual(got, ("rpm", "appsweep"))
+
+    def test_pacman_answer_is_parsed(self):
+        got = self._owner("appsweep", "pacman")
+        self.assertEqual(got, ("pacman", "appsweep"))
+
+    def test_unowned_path_is_not_claimed(self):
+        def fake_have(cmd):
+            return cmd == "dpkg-query"
+
+        def fake_run(argv, **kw):
+            return _result("", code=1, err="no path found")
+
+        with mock.patch("appsweep.util.have", fake_have), \
+             mock.patch("appsweep.util.run", fake_run):
+            self.assertIsNone(
+                selfremove._owner_package(Path("/opt/elsewhere/x.py")))
+
+    def test_a_source_checkout_is_not_removable(self):
+        with mock.patch.object(selfremove, "_owner_package",
+                               return_value=None):
+            with mock.patch.object(selfremove, "package_root",
+                                   return_value=Path("/home/u/code/AppSweep")):
+                install = selfremove.detect()
+        self.assertEqual(install.method, "source")
+        self.assertFalse(install.removable)
+        self.assertEqual(install.command, "")
+
+    def test_user_install_lists_only_its_own_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            prefix = Path(tmp) / ".local"
+            root = prefix / "share" / "appsweep"
+            root.mkdir(parents=True)
+            (prefix / "bin").mkdir(parents=True)
+            (prefix / "bin" / "appsweep").write_text("#!/bin/sh\n")
+            with mock.patch.object(selfremove, "_owner_package",
+                                   return_value=None):
+                with mock.patch.object(selfremove, "package_root",
+                                       return_value=root):
+                    install = selfremove.detect()
+        self.assertEqual(install.method, "user")
+        self.assertTrue(install.removable)
+        # Only paths that are really there, and every one of them explicit.
+        self.assertTrue(install.paths)
+        for path in install.paths:
+            self.assertTrue(path.startswith(str(prefix)), path)
+            self.assertNotIn("*", path)
+        self.assertIn("rm -rf", install.command)
+
+    def test_packaged_copies_leave_through_their_package_manager(self):
+        for answer, which, expected in (
+            ("appsweep: /usr/share/appsweep/appsweep/__init__.py",
+             "dpkg-query", "apt remove"),
+            ("appsweep-0.1.1-1.noarch", "rpm", "remove"),
+            ("appsweep", "pacman", "pacman -R"),
+        ):
+            def fake_have(cmd, _w=which):
+                return cmd == _w
+
+            def fake_run(argv, _w=which, _a=answer, **kw):
+                return _result(_a) if argv[0] == _w else _result("", code=1)
+
+            with mock.patch("appsweep.util.have", fake_have), \
+                 mock.patch("appsweep.util.run", fake_run):
+                install = selfremove.detect()
+            self.assertIn(expected, install.command, which)
+            self.assertNotIn("rm -rf", install.command, which)
+
+    def test_the_terminal_script_shows_the_command_before_running_it(self):
+        install = selfremove.Installation(
+            method="deb", label="x", detail="/usr/share/appsweep",
+            command="sudo apt remove appsweep")
+        script = selfremove.session_script(install)
+        self.assertIn("sudo apt remove appsweep", script)
+        self.assertIn("read ", script)          # waits, so the user can read
+
+    def test_terminal_argv_ends_with_the_script(self):
+        argv = selfremove.terminal_argv("echo hi")
+        if argv is None:
+            self.skipTest("no terminal emulator on this machine")
+        self.assertEqual(argv[-3:], ["sh", "-c", "echo hi"])
 
 
 if __name__ == "__main__":
